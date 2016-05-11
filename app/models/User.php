@@ -19,6 +19,11 @@ class User extends Model implements AuthenticatableContract
         'birthdate',
         'firstname',
         'lastname',
+        'adres',
+        'zipcode',
+        'place',
+        'province',
+        'phonenumber',
     ];
 
     protected $hidden = [
@@ -26,13 +31,39 @@ class User extends Model implements AuthenticatableContract
         'remember_token',
     ];
 
-    public function getName()
-    {
+    public function getName() {
         return $this->firstname . " " . $this->lastname;
     }
 
-    public function getAvatarUrl()
-    {
+    public function getFirstname() {
+        return $this->firstname;
+    }
+
+    public function getLastname() {
+        return $this->lastname;
+    }
+
+    public function getAddress() {
+        return $this->adres;
+    }
+
+    public function getZipcode() {
+        return $this->zipcode;
+    }
+
+    public function getPlace() {
+        return $this->place;
+    }
+
+    public function getProvince() {
+        return $this->province;
+    }
+
+    public function getPhoneNumber() {
+        return $this->phonenumber;
+    }
+
+    public function getProfileImg() {
         
     }
 

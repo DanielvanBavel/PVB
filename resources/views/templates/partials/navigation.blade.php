@@ -8,7 +8,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">Tijdlijn</a></li>
                     <li><a href="#">Vrienden</a></li>
-                    <li><a href="#">Berichten</a></li>
+                    <li><a href="{{ route('messages.index') }}">Berichten</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search" action="#">
                     <div class="form-group">
@@ -19,8 +19,8 @@
             @endif
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
-                    <li><a href="#">Welkom, {{ Auth::user()->getName() }}</a></li>
-                    <li><a href="#">Update profiel</a></li>
+                    <li class="welcomeUser">Welkom, {{ Auth::user()->getName() }}</li>
+                    <li><a href="{{route('profile.index')}}">Profiel</a></li>
                     <li><a href="{{ route('auth.signout') }}">Uitloggen</a></li>
                 @else
                     <li><a href="{{ route('auth.register') }}">Registeren</a></li>

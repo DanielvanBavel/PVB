@@ -4,7 +4,7 @@ namespace SocialApp\Http\Requests;
 
 use SocialApp\Http\Requests\Request;
 
-class RegisterRequest extends Request
+class LoginRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,16 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|min:6',
-            'birthdate' => 'required|date|age:65',
-            'firstname' => 'required|min:3|max:20',
-            'lastname' => 'required|min:3|max:40',
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'email.required' => 'Het veld email is verplicht om in te vullen',
-            'birthdate.age' => 'Je moet ten minste 65 jaar oud zijn.',
+            'email.required' => 'Het veld email is verplicht om te kunnen inloggen',
+            'password.required' => 'Het veld password is verplicht om te kunnen inloggen',
         ];
     }
 }

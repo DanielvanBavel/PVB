@@ -45,3 +45,31 @@ Route::get('/uitloggen', [
     'uses' => '\SocialApp\Http\Controllers\AuthController@getSignout',
     'as' => 'auth.signout',
 ]);
+
+/*Messages*/
+
+Route::get('/berichten', [
+    'uses' => '\SocialApp\Http\Controllers\MessageController@getMessages',
+    'as' => 'messages.index',
+]);
+
+
+/**
+ * User profile
+ */
+
+Route::get('/profiel', [
+    'uses' => '\SocialApp\Http\Controllers\ProfileController@getProfile',
+    'as' => 'profile.index',
+]);
+
+Route::get('/profiel/edit', [
+    'uses' => '\SocialApp\Http\Controllers\ProfileController@getEdit',
+    'as' => 'profile.edit',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/profiel/edit', [
+    'uses' => '\SocialApp\Http\Controllers\ProfileController@postEdit',
+    'middleware' => ['auth'],
+]);

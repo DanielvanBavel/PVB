@@ -2,12 +2,12 @@
     background: mintcream;
 }
 
-.fl-r {
-	float: right;
+.mtop15 {
+	margin-top: 15px;
 }
-.fl-l {
-	float: left;
-}
+
+.fl-r {	float: right;}
+.fl-l {	float: left; }
 .center {
 	margin-left:25%;
 	margin-right: 25%;
@@ -15,7 +15,34 @@
 	display: block;
 }
 
-textarea {
-	resize: none;
-	outline: none;
+textarea {	resize: none;	outline: none;}
+
+.message-friend {	margin: 10px 0 0 0;	padding-bottom: 10px;	border-bottom: 1px solid gray}
+
+.message-friend > span {
+	font: 16px 'Helvetica';
+	margin: 0 0 0 10px;
+}
+
+.Userinfo.Block, .fotoBlock {
+	background: #f8f8f8;
+	float: left;
+}
+
+.Userinfo.Block > span {
+	width: 100%;
+	float: left;
+	font: 15px 'Helvetica';
+	margin: 10px 0 7px 8px; 
+	font-color: #fff;
+} 
+
+.pictures {
+	margin: 15px 0 0 0;
+	float: left;
+}
+
+li.welcomeUser {
+	color: #777;
+	margin-top: 15px;
 }

@@ -6,7 +6,8 @@ use Auth;
 use Carbon\Carbon;
 use SocialApp\Models\User;
 use Illuminate\Http\Request;
-use SocialApp\Request\RegisterRequest;
+use SocialApp\Http\Requests\RegisterRequest;
+use SocialApp\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -15,13 +16,8 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function postRegister(Request $request)
+    public function postRegister(RegisterRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|min:6',
-        ]);
-
         User::create([
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
@@ -40,13 +36,8 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(LoginRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
         if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
             return redirect()->back()->with('info', 'Could not sign you in with those details.');
         }
