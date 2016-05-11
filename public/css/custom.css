@@ -1,0 +1,21 @@
+.media {
+    background: mintcream;
+}
+
+.fl-r {
+	float: right;
+}
+.fl-l {
+	float: left;
+}
+.center {
+	margin-left:25%;
+	margin-right: 25%;
+	position: relative;
+	display: block;
+}
+
+textarea {
+	resize: none;
+	outline: none;
+}
