@@ -9,8 +9,7 @@
     <div class="col-lg-3">
         <h3>Info</h3>
         <div class="Userinfo Block">
-            <span>Voornaam: {{ Auth::user()->getFirstname() }}</span>
-            <span>Achternaam: {{ Auth::user()->getLastname() }}</span>
+            <span>Naam: {{ Auth::user()->getName() }}</span>
             <span>Adres: {{ Auth::user()->getAddress()}}</span>
             <span>Postcode: {{ Auth::user()->getZipcode()}}</span>
             <span>Woonplaats: {{ Auth::user()->getPlace()}}</span>

@@ -51,6 +51,7 @@ Route::get('/uitloggen', [
 Route::get('/berichten', [
     'uses' => '\SocialApp\Http\Controllers\MessageController@getMessages',
     'as' => 'messages.index',
+    'middleware' => ['auth'],
 ]);
 
 
@@ -61,6 +62,7 @@ Route::get('/berichten', [
 Route::get('/profiel', [
     'uses' => '\SocialApp\Http\Controllers\ProfileController@getProfile',
     'as' => 'profile.index',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/profiel/edit', [
@@ -71,5 +73,15 @@ Route::get('/profiel/edit', [
 
 Route::post('/profiel/edit', [
     'uses' => '\SocialApp\Http\Controllers\ProfileController@postEdit',
+    'middleware' => ['auth'],
+]);
+
+/*
+* Friends
+*/
+
+Route::get('/vrienden', [
+    'uses' => '\SocialApp\Http\Controllers\FriendsController@index',
+    'as'   => 'friends.index',
     'middleware' => ['auth'],
 ]);

@@ -2,7 +2,6 @@
 
 namespace SocialApp\Models;
 
-use SocialApp\Models\Status;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -75,11 +74,6 @@ class User extends Model implements AuthenticatableContract
     // public function likes()
     // {
     //     return $this->hasMany('Chatty\Models\Like', 'user_id');
-    // }
-
-    // public function friendsOfMine()
-    // {
-    //     return $this->belongsToMany('Chatty\Models\User', 'friends', 'user_id', 'friend_id');
     // }
 
     // public function friendOf()
