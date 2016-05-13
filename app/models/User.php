@@ -63,7 +63,7 @@ class User extends Model implements AuthenticatableContract
     }
 
     public function getProfileImg() {
-        
+        return $this->profile_img;
     }
 
     // public function statuses()

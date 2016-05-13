@@ -5,6 +5,7 @@ namespace SocialApp\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use SocialApp\Models\User;
 
 class Friends extends Model implements AuthenticatableContract
 {
@@ -17,8 +18,14 @@ class Friends extends Model implements AuthenticatableContract
         'FriendsRequest',
     ];
 
-    public function myFriends()
+    public function myFriends(User $user)
     {
-        json_encode($this->FriendsList);
+        $friends = Friend::FriendsList;
+
+        return $friends;
+    }
+
+    public function myFriendsRequest(User $user){
+
     }
 }

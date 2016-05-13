@@ -1,5 +1,5 @@
 @extends('templates.default')
 
 @section('content')
-	<span>{{ Auth::Friends()->myFriends() }}</span>
+	<span>{{ Friends()->myFriends() }}</span>
 @stop

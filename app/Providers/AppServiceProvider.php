@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::extend('age', function($attribute, $value, $parameters, $validator) {
-            $requiredAge = Carbon::now()->subYears($parameters[0])->addDays(1);
+            $requiredAge = Carbon::now()->subYears($parameters[0]);
             return new Carbon($value) <= $requiredAge;
         });
     }

@@ -46,6 +46,12 @@ Route::get('/uitloggen', [
     'as' => 'auth.signout',
 ]);
 
+Route::get('/wachtwoordvergeten', [
+    'uses'  => '\SocialApp\Http\Controllers\AuthController@getPasswordForgotten',
+    'as' => 'auth.forgetPass',
+    'middleware' => ['guest'],
+]);
+
 /*Messages*/
 
 Route::get('/berichten', [
@@ -56,7 +62,7 @@ Route::get('/berichten', [
 
 
 /**
- * User profile
+ * GebruikersProfiel
  */
 
 Route::get('/profiel', [
@@ -77,7 +83,7 @@ Route::post('/profiel/edit', [
 ]);
 
 /*
-* Friends
+* Vrienden
 */
 
 Route::get('/vrienden', [
@@ -85,3 +91,26 @@ Route::get('/vrienden', [
     'as'   => 'friends.index',
     'middleware' => ['auth'],
 ]);
+
+/*
+* Meldingen
+*/
+
+Route::get('/meldingen', [
+    'uses' => '\SocialApp\Http\Controller\NotificationController@index',
+    'as'    => 'notification.index',
+    'middleware' => ['auth'],
+]);
+
+
+
+/**
+ * Zoeken
+ */
+
+Route::get('/zoeken', [
+    'uses' => '\SocialApp\Http\Controllers\SearchController@getResults',
+    'as' => 'search.results',
+]);
+
+

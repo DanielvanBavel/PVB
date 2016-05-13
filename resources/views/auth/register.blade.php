@@ -1,10 +1,10 @@
 @extends('templates.default')
 
 @section('content')
-    <h3>Registreren</h3>
-    
+<div class="center">
+    <h3>Registreren</h3>    
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <form class="form-vertical" role="form" method="post" action="{{ route('auth.register') }}">
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="control-label">Email Adres</label>
@@ -53,4 +53,5 @@
             </form>
         </div>
     </div>
+</div>
 @stop

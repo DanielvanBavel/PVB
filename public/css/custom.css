@@ -1,10 +1,9 @@
-.media {
-    background: mintcream;
-}
+.media { background: mintcream;}
+.lineBottom {border-bottom: 1px solid #000;}
 
-.mtop15 {
-	margin-top: 15px;
-}
+.mtop15 {margin-top: 15px;}
+.mtop20 { margin-top: 20px; }
+.height80 {height: 80px;}
 
 .fl-r {	float: right;}
 .fl-l {	float: left; }
@@ -45,4 +44,25 @@ textarea {	resize: none;	outline: none;}
 li.welcomeUser {
 	color: #777;
 	margin-top: 15px;
+}
+
+a.forgetPass {
+	display: block;
+	float: left;
+	margin-right: 40px;
+}
+
+.profile-img {
+	margin: 10px 0 0 10px;
+}
+
+.btnFixMar {
+	margin: -45px 30px 0 0;
+	display: block;
+}
+
+li.welcomeUser > a {
+    float: right;
+    display: block;
+    margin-top: -15px;
 }

@@ -9,8 +9,9 @@
                     <li><a href="{{ route('home') }}">Tijdlijn</a></li>
                     <li><a href="{{ route('friends.index') }}">Vrienden</a></li>
                     <li><a href="{{ route('messages.index') }}">Berichten</a></li>
+                    <li><a href="{{ route('notification.index') }}">Meldingen</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search" action="#">
+                <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
                     <div class="form-group">
                         <input type="text" name="query" class="form-control" placeholder="zoek mensen">
                     </div>
@@ -19,8 +20,7 @@
             @endif
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
-                    <li class="welcomeUser">Welkom, {{ Auth::user()->getName() }}</li>
-                    <li><a href="{{route('profile.index')}}">Profiel</a></li>
+                    <li class="welcomeUser">Welkom, <a href="{{route('profile.index')}}"> {{ Auth::user()->getName() }}</a></li>
                     <li><a href="{{ route('auth.signout') }}">Uitloggen</a></li>
                 @else
                     <li><a href="{{ route('auth.register') }}">Registeren</a></li>

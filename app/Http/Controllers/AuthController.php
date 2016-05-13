@@ -28,7 +28,7 @@ class AuthController extends Controller
 
         return redirect()
             ->route('home')
-            ->with('info', 'Your account has been created and you can now sign in.');
+            ->with('info', 'Uw account is aangemaakt, u kunt nu inloggen');
     }
 
     public function getLogin()
@@ -36,16 +36,22 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(LoginRequest $request)
-    {
+    public function postLogin(LoginRequest $request) {
         if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
-            return redirect()->back()->with('info', 'Could not sign you in with those details.');
+            return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
         }
-        return redirect()->route('home')->with('info', 'You are now signed in.');
+        return redirect()->route('home')->with('info', 'Je bent succesvol ingelogd');
     }
 
-    public function getSignout()
-    {
+    public function getPasswordForgotten() {
+        return view('auth.recover');
+    }
+
+    public function PostPasswordForgotten(RecoverRequest $request) {
+        echo "recover";
+    }
+
+    public function getSignout() {
         Auth::logout();
         return redirect()->route('home');
     }
