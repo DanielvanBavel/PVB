@@ -9,13 +9,12 @@ use Illuminate\Http\Request;
 
 Class ProfileController extends Controller
 {
-    public function getProfile() {
-    	$id = Auth::user()->id;  	
-       	return view('profile.index')->with('id', $id);
+    public function getProfile(User $user) {
+       	return view('profile.index')->with(['profile' => $user]);
     }
 
-    public function getEdit() {
-        return view('profile.edit');
+    public function getEdit(User $user) {
+        return view('profile.edit')->with(['profile' => $user]);
     }
 
     public function postEdit(ProfileRequest $request) {

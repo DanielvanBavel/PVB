@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('adres') ? ' has-error': '' }}">
                     <label for="adres" class="control-label">Adres</label>
-                    <input type="text" name="adres" class="form-control" value="{{ Auth::user()->GetAddress() }}">
+                    <input type="text" name="adres" class="form-control" value="{{ Auth::user()->adres }}">
                     @if ($errors->has('adres'))
                         <span class="help-block">{{ $errors->first('adres') }}</span>
                     @endif
@@ -38,7 +38,8 @@
 
                 <div class="form-group{{ $errors->has('zipcode') ? ' has-error': '' }}">
                     <label for="zipcode" class="control-label">Postcode</label>
-                    <input type="text" name="zipcode" class="form-control" value="{{ Auth::user()->GetZipcode() }}">
+                    <input type="text" name="zipcode" class="form-control" 
+                        value="{{ Auth::user()->zipcode }}">
                     @if ($errors->has('zipcode'))
                         <span class="help-block">{{ $errors->first('zipcode') }}</span>
                     @endif
@@ -46,7 +47,8 @@
 
                 <div class="form-group{{ $errors->has('place') ? ' has-error': '' }}">
                     <label for="place" class="control-label">Woonplaats</label>
-                    <input type="text" name="place" class="form-control" value="{{ Auth::user()->GetPlace() }}">
+                    <input type="text" name="place" class="form-control" 
+                        value="{{ Auth::user()->place }}">
                     @if ($errors->has('place'))
                         <span class="help-block">{{ $errors->first('place') }}</span>
                     @endif
@@ -54,7 +56,8 @@
 
                 <div class="form-group{{ $errors->has('province') ? ' has-error': '' }}">
                     <label for="province" class="control-label">Provincie</label>
-                    <input type="text" name="province" class="form-control" value="{{ Auth::user()->GetProvince() }}">
+                    <input type="text" name="province" class="form-control" 
+                        value="{{ Auth::user()->province }}">
                     @if ($errors->has('province'))
                         <span class="help-block">{{ $errors->first('province') }}</span>
                     @endif
@@ -62,28 +65,12 @@
 
                 <div class="form-group{{ $errors->has('phonenumber') ? ' has-error': '' }}">
                     <label for="phonenumber" class="control-label">Telefoon nummer</label>
-                    <input type="text" name="phonenumber" class="form-control" value="{{ Auth::user()->GetPhonenumber() }}">
+                    <input type="text" name="phonenumber" class="form-control" 
+                        value="{{ Auth::user()->phonenumber }}">
                     @if ($errors->has('phonenumber'))
                         <span class="help-block">{{ $errors->first('phonenumber') }}</span>
                     @endif
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Update</button>

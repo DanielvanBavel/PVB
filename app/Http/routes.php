@@ -65,8 +65,8 @@ Route::get('/berichten', [
  * GebruikersProfiel
  */
 
-Route::get('/profiel/{id}', [
-    'uses' => '\SocialApp\Http\Controllers\ProfileController@getProfile',
+Route::get('/profiel/{user}', [
+    'uses' => 'ProfileController@getProfile',
     'as' => 'profile.index',
     'middleware' => ['auth'],
 ]);

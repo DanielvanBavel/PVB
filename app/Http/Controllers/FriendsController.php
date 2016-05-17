@@ -11,13 +11,6 @@ class FriendsController extends Controller
 {
 	public function index()
 	{
-		$friends = Friends::mine();
-
-		dd($friends);
-		
-
-		$friends = Friends::where('user_id', Auth::id());
-
-		return view('friends.index', $friends);
+		return view('friends.index');
 	}
 }
