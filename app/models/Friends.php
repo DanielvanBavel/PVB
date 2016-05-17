@@ -18,11 +18,18 @@ class Friends extends Model implements AuthenticatableContract
         'FriendsRequest',
     ];
 
+    protected $hidden = [
+        'User_id',
+    ];
+
+    public function scopeMine($query)
+    {
+        return $query->where('User_id', \Illuminate\Support\Facades\Auth::id())->first(['FriendsList'])->toArray()['FriendsList'];
+    }
+
     public function myFriends(User $user)
     {
-        $friends = Friend::FriendsList;
-
-        return $friends;
+        return $this->hasMany('Friends');
     }
 
     public function myFriendsRequest(User $user){

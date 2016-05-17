@@ -65,19 +65,19 @@ Route::get('/berichten', [
  * GebruikersProfiel
  */
 
-Route::get('/profiel', [
+Route::get('/profiel/{id}', [
     'uses' => '\SocialApp\Http\Controllers\ProfileController@getProfile',
     'as' => 'profile.index',
     'middleware' => ['auth'],
 ]);
 
-Route::get('/profiel/edit', [
+Route::get('/mijnprofiel/edit', [
     'uses' => '\SocialApp\Http\Controllers\ProfileController@getEdit',
     'as' => 'profile.edit',
     'middleware' => ['auth'],
 ]);
 
-Route::post('/profiel/edit', [
+Route::post('/mijnprofiel/edit', [
     'uses' => '\SocialApp\Http\Controllers\ProfileController@postEdit',
     'middleware' => ['auth'],
 ]);
@@ -102,8 +102,6 @@ Route::get('/meldingen', [
     'middleware' => ['auth'],
 ]);
 
-
-
 /**
  * Zoeken
  */
@@ -112,5 +110,3 @@ Route::get('/zoeken', [
     'uses' => '\SocialApp\Http\Controllers\SearchController@getResults',
     'as' => 'search.results',
 ]);
-
-
