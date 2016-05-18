@@ -114,3 +114,10 @@ Route::get('/zoeken', [
 ]);
 
 
+/**
+*  Timeline
+*/
+
+Route::post('submitPost',[
+    'uses' => '\SocialApp\Http\Controllers\HomeController@submitPost'
+]);

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-6 center">
-            <form role="form" action="" method="post">
+            <form role="form" action="submitPost" method="post">
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                     <textarea placeholder="Wat ben je aan het doen??" 
                     name="status" class="form-control" rows="5" cols="30"></textarea>

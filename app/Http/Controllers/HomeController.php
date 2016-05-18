@@ -3,6 +3,9 @@
 namespace SocialApp\Http\Controllers;
 
 use Auth;
+use Illuminate\Http\Request;
+use SocialApp\Models\Statuses;
+
 
 class HomeController extends Controller
 {
@@ -12,5 +15,10 @@ class HomeController extends Controller
             return view('timeline.index');
         }
         return view('home');
+    }
+
+    public function submitPost(Request $request)
+    {
+    	var_dump($request->input('status'));
     }
 }
