@@ -27,15 +27,6 @@
                 <div class="fotoBlock">
                     <div class="row">
                         <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                    </div>
-                    <div class="row">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
                     </div>
                 </div>
                 @if($profile->id === Auth::id())
@@ -44,18 +35,19 @@
             </div>
 
             <div class="friends mtop30 mbottom30">
-                <h3>Mijn vrienden</h3> 
+                <h3>Mijn vrienden</h3>
                 @if(!$profile->friends()->count())
                     <span>Helaas u heeft nog geen vrienden</span>
-                @else               
-                    @foreach ($profile->friends() as $user)
+                @else            
+                    @foreach ($profile->friends(0, 9) as $user)
                         @include('templates/partials/friends')
                     @endforeach
+                    <a class="SeeAll" <a href="{{route('profile.friends', $profile->id )}}">Klik hier voor volledige vriendenlijst</a>
                 @endif
             </div>
         </div>
 
-        <div class="col-lg-9 posts">
-            <h3>Geplaatste berichten</h3>
-        </div> 
+    <div class="col-lg-9 posts">
+        <h3>Geplaatste berichten</h3>
+    </div> 
 @stop

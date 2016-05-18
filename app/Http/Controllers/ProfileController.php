@@ -32,4 +32,8 @@ Class ProfileController extends Controller
             ->route('profile.edit')
             ->with('info', 'Je profiel is succesvol bijgewerkt');
     }
+
+    public function viewFriendsFromProfile(User $user) {
+        return view('profile.friends')->with(['profile' => $user]);
+    }
 }

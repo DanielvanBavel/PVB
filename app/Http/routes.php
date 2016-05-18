@@ -11,7 +11,7 @@
  */
 
 Route::get('/', [
-    'uses' => '\SocialApp\Http\Controllers\HomeController@index',
+    'uses' => 'HomeController@index',
     'as' => 'home',
 ]);
 
@@ -55,7 +55,7 @@ Route::get('/wachtwoordvergeten', [
 /*Messages*/
 
 Route::get('/berichten', [
-    'uses' => '\SocialApp\Http\Controllers\MessageController@getMessages',
+    'uses' => 'MessageController@getMessages',
     'as' => 'messages.index',
     'middleware' => ['auth'],
 ]);
@@ -72,13 +72,19 @@ Route::get('/profiel/{user}', [
 ]);
 
 Route::get('/mijnprofiel/edit', [
-    'uses' => '\SocialApp\Http\Controllers\ProfileController@getEdit',
+    'uses' => 'ProfileController@getEdit',
     'as' => 'profile.edit',
     'middleware' => ['auth'],
 ]);
 
 Route::post('/mijnprofiel/edit', [
-    'uses' => '\SocialApp\Http\Controllers\ProfileController@postEdit',
+    'uses' => 'ProfileController@postEdit',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/profiel/{user}/vrienden', [
+    'uses' => 'ProfileController@viewFriendsFromProfile',
+    'as'   => 'profile.friends',
     'middleware' => ['auth'],
 ]);
 
@@ -87,7 +93,7 @@ Route::post('/mijnprofiel/edit', [
 */
 
 Route::get('/vrienden', [
-    'uses' => '\SocialApp\Http\Controllers\FriendsController@index',
+    'uses' => 'FriendsController@getFriends',
     'as'   => 'friends.index',
     'middleware' => ['auth'],
 ]);
@@ -97,7 +103,7 @@ Route::get('/vrienden', [
 */
 
 Route::get('/meldingen', [
-    'uses' => '\SocialApp\Http\Controller\NotificationController@index',
+    'uses' => 'NotificationController@index',
     'as'    => 'notification.index',
     'middleware' => ['auth'],
 ]);
@@ -107,6 +113,6 @@ Route::get('/meldingen', [
  */
 
 Route::get('/zoeken', [
-    'uses' => '\SocialApp\Http\Controllers\SearchController@getResults',
+    'uses' => 'SearchController@getResults',
     'as' => 'search.results',
 ]);

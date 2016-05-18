@@ -2,15 +2,20 @@
 
 namespace SocialApp\Http\Controllers;
 
-use DB;
 use Auth;
 use SocialApp\Models\User;
-use SocialApp\Models\Friends;
 
 class FriendsController extends Controller
 {
-	public function index()
+	public function getFriends(User $user)
 	{
+		$id = Auth::user()->id;
+		$friends = Auth::user->friends;
+
+		dd(friends);
+
 		return view('friends.index');
 	}
+
+
 }

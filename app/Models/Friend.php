@@ -1,42 +1,29 @@
 <?php
 
-// namespace SocialApp\Models;
+namespace SocialApp\Models;
 
-// use Illuminate\Auth\Authenticatable;
-// use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-// use SocialApp\Models\User;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-// class Friends extends Model implements AuthenticatableContract
-// {
-//     use Authenticatable;
+class Friend extends Model implements AuthenticatableContract
+{
+	use Authenticatable;
 
-//     protected $table = 'friends';
+    protected $table = 'friends';
 
-//     protected $fillable = [
-//         'FriendsList',
-//         'FriendsRequest',
-//     ];
+    // public function myFriends() {
+    //     return $this->BelongsToMany('\SocialApp\Models\Friend', 'friends', 'user_id', 'friend_id');
+    // }
 
-//     protected $hidden = [
-//         'User_id',
-//     ];
+    // public function friendOf() {
+    //     return $this->BelongsToMany('\SocialApp\Models\Friend', 'friends', 'friend_id', 'user_id');
+    // }
 
-//     public function scopeMine($query)
-//     {
-//         return $query->where('User_id', \Illuminate\Support\Facades\Auth::id())->first(['FriendsList'])->toArray()['FriendsList'];
-//     }
+    // public function friends() {
+    //     $myFriends = $this->myFriends()->wherePivot('accepted', true)->get();
 
-//     public function myFriends() {
-//         return $this->BelongsToMany('\SocialApp\Models\User', 'friends', 'user_id', 'friend_id');
-//     }
 
-//     public function friendOf() {
-//         return $this->BelongsToMany('\SocialApp\Models\User', 'friends', 'friend_id', 'user_id');
-//     }
-
-//     public function friends() {
-//         return $this->myFriends()->wherePivot('accepted', true)->get()->
-//         merge($this->friendOf()->wherePivot('accepted', true)->get());
-//     }
+    //     return $myFriends->merge($this->friendOf()->wherePivot('accepted', true)->get());
+    // }
 }

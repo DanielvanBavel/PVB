@@ -51,6 +51,13 @@ textarea {	resize: none;	outline: none;}
 	margin-left: 15px;
 }
 
+a.SeeAll {
+	width: 100%;
+	display: block;
+	float: left;
+	position: relative;
+}
+
 .pictures {
 	margin: 15px 0 0 0;
 	float: left;
