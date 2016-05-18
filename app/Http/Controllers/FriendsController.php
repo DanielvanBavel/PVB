@@ -2,6 +2,7 @@
 
 namespace SocialApp\Http\Controllers;
 
+use DB;
 use Auth;
 use SocialApp\Models\User;
 use SocialApp\Models\Friends;
