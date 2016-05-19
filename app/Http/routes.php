@@ -52,6 +52,15 @@ Route::get('/wachtwoordvergeten', [
     'middleware' => ['guest'],
 ]);
 
+Route::get('/vraaghulp', [
+    'uses'  => 'AuthController@askHelp',
+    'as' => 'auth.askHelp',
+    'middleware' => ['auth'],
+]);
+
+
+
+
 /*Messages*/
 
 Route::get('/berichten', [
@@ -98,8 +107,20 @@ Route::get('/vrienden', [
     'middleware' => ['auth'],
 ]);
 
-Route::post('/vrienden', [
+Route::get('/vrienden/accept/{user}', [
     'uses' => 'FriendsController@AcceptFriendsRequests',
+    'as' => 'friends.accept',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/vrienden/accept/{user}', [
+    'uses' => 'FriendsController@AcceptFriendsRequests',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/vrienden/add/{user}', [
+    'uses'       => 'FriendsController@SendFriendRequest',
+    'as'         => 'friends.add',
     'middleware' => ['auth'],
 ]);
 
@@ -112,6 +133,29 @@ Route::get('/meldingen', [
     'as'    => 'notification.index',
     'middleware' => ['auth'],
 ]);
+
+/*
+* Statussen 
+*/
+
+Route::post('/status', [
+    'uses' => 'StatusController@postStatus',
+    'as' => 'status.index',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/status/{statusId}/reageer', [
+    'uses' => 'StatusController@postReply',
+    'as' => 'status.reply',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/status/{statusId}/like', [
+    'uses' => 'StatusController@getLike',
+    'as' => 'status.like',
+    'middleware' => ['auth'],
+]);
+
 
 /**
  * Zoeken

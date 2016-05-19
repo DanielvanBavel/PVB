@@ -5,6 +5,7 @@ namespace SocialApp\Http\Controllers;
 use Auth;
 use DB;
 use SocialApp\Models\User;
+use SocialApp\Models\Friend;
 use Illuminate\Http\Request;
 
 class FriendsController extends Controller
@@ -17,12 +18,22 @@ class FriendsController extends Controller
 		]);
 	}
 
-	public function AcceptFriendsRequests(){
-		// $accept = Auth::user()->friendsRequests();
-		
-		// DB::table('friends')->Where('id' => $profile->id)
-  //           ->and('accepted', 0)
-  //           ->update(['accepted' => 1]);
-  //           // ->redirect()->route('vrienden');
+	public function AcceptFriendsRequests(User $user, Request $request) {
+
+		Friend::where('friend_id', $user->id)
+			  ->where('accepted', 0)
+              ->update(['accepted' => 1]);
+
+        return redirect()->back();
 	}
+
+	public function SendFriendRequest(User $user) {
+        $user = User::where('id', $user->id)->first();
+        
+        Auth::user()->addFriend($user);
+
+        return redirect()
+        		->route('home', ['name' => $user->getName()])
+        		->with('info', 'Vriendschapsverzoek is verzonden');
+    }
 }

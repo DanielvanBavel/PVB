@@ -51,6 +51,10 @@ class AuthController extends Controller
         echo "recover";
     }
 
+    public function askHelp() {
+        return view('auth.askhelp');
+    }
+
     public function getSignout() {
         Auth::logout();
         return redirect()->route('home');

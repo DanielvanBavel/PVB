@@ -5,7 +5,7 @@
         <img alt="" class="ProfileBanner" src="http://rockstartemplate.com/design/Blue_glossy_Background.jpg" 
         width="100%" height="200">
 
-        <img class="ProfileImg" src="{{ $profile->profile_img }}" width="150" height="150">
+        <img class="ProfileImg" src="@if(!$profile->profile_img) {{ URL::to('/') }}/images/users/profile-img.jpg  @else {{ $profile->profile_img }} @endif" width="150" height="150">
     </div>
         <div class="col-lg-3">
             <h3>Info</h3>
@@ -22,22 +22,22 @@
                 @endif               
             </div>
 
-            <div class="pictures">
+            <!-- <div class="pictures">
                 <h3>Foto's</h3>
                 <div class="fotoBlock">
                     <div class="row">
                         <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
                     </div>
                 </div>
-                @if($profile->id === Auth::id())
+               {{-- @if($profile->id === Auth::id())
                     <a class="btn btn-primary mtop15" href="{{ route('profile.edit')}}">Upload foto's</a>
-                @endif
-            </div>
+                @endif--}}
+            </div> -->
 
             <div class="friends mtop30 mbottom30">
                 <h3>Mijn vrienden</h3>
                 @if(!$profile->friends()->count())
-                    <span>Helaas u heeft nog geen vrienden</span>
+                    <span>Helaas, u heeft nog geen vrienden</span>
                 @else            
                     @foreach ($profile->friends(0, 9) as $user)
                         @include('templates/partials/friends')
@@ -45,9 +45,21 @@
                     <a class="SeeAll" <a href="{{route('profile.friends', $profile->id )}}">Klik hier voor volledige vriendenlijst</a>
                 @endif
             </div>
+            
+            <div class="LetSomeoneHelpMe">
+                <h3>Vraag hulp</h3>
+                <a href="{{ route('auth.askHelp')}}">Vraag hulp aan een bekende om mij te helpen met mijn account</a>
+            </div>
         </div>
 
     <div class="col-lg-9 posts">
-        <h3>Geplaatste berichten</h3>
+        <h3>Mijn geplaatste berichten</h3>            
+            @if (!$statuses->count())
+                <span>Er zijn nog geen geplaatste berichten</span>
+            @else 
+                @foreach ($statuses as $status)               
+                    @include('templates/partials/profileStatuses')                    
+                @endforeach
+            @endif
     </div> 
 @stop

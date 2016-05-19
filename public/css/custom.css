@@ -47,6 +47,7 @@ textarea {	resize: none;	outline: none;}
     width: 100%;
 }
 
+
 .friends > h3, .friends > span {
 	margin-left: 15px;
 }
@@ -56,6 +57,14 @@ a.SeeAll {
 	display: block;
 	float: left;
 	position: relative;
+}
+
+.LetSomeoneHelpMe {
+	float: left;
+	background: #f8f8f8;
+	position: relative;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .pictures {
@@ -135,6 +144,10 @@ span.count {
     color: #fff;
     padding: 2px 0 0 9px;
     display: block;
+}
+
+.media.Posts{
+	margin-bottom: 25px;
 }
 
 

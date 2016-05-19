@@ -5,12 +5,18 @@ namespace SocialApp\Http\Controllers;
 use Auth;
 use DB;
 use SocialApp\Models\User;
+use SocialApp\Models\Status;
 use Illuminate\Http\Request;
 
 Class ProfileController extends Controller
 {
-    public function getProfile(User $user) {
-       	return view('profile.index')->with(['profile' => $user]);
+    public function getProfile(User $user, Status $statuses) {
+        $statuses = $this->getMinePosts();
+
+       	return view('profile.index')->with([
+            'profile' => $user, 
+            'statuses' => $statuses
+        ]);
     }
 
     public function getEdit(User $user) {
@@ -35,5 +41,10 @@ Class ProfileController extends Controller
 
     public function viewFriendsFromProfile(User $user) {
         return view('profile.friends')->with(['profile' => $user]);
+    }
+
+    public function getMinePosts() {
+       return Status::where('user_id', Auth::user()->id)
+              ->whereNull('parent_id')->get();
     }
 }

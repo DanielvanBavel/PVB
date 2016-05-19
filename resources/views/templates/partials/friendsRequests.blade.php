@@ -6,5 +6,5 @@
 
 	<span>{{$user->getName()}}</span>
 	
-	<a class="btn btn-primary" href="{{ action('FriendsController@AcceptFriendsRequests') }}">Accepteren</a>
+	<a class="btn btn-primary" href="{{ route('friends.accept', $user->id) }}">Accepteren</a>
 </div>
