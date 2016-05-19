@@ -98,6 +98,11 @@ Route::get('/vrienden', [
     'middleware' => ['auth'],
 ]);
 
+Route::post('/vrienden', [
+    'uses' => 'FriendsController@AcceptFriendsRequests',
+    'middleware' => ['auth'],
+]);
+
 /*
 * Meldingen
 */

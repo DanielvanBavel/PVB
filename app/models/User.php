@@ -6,15 +6,13 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-use SocialApp\Models\Friend;
-
-class User extends Model implements AuthenticatableContract
+Class User extends Model implements AuthenticatableContract
 {
     use Authenticatable;
 
     protected $table = 'users';
 
-    protected $dates = ['created_at', 'updated_at', 'birthdate'];
+    // protected $dates = ['created_at', 'updated_at', 'birthdate'];
 
     protected $fillable = [
         'email',
@@ -61,5 +59,9 @@ class User extends Model implements AuthenticatableContract
     public function friends() {
         return $this->myFriends()->wherePivot('accepted', true)->get()->
         merge($this->friendOf()->wherePivot('accepted', true)->get());
+    }
+    
+    public function friendsRequests() {
+        return $this->myFriends()->wherePivot('accepted', false)->get();
     }
 }

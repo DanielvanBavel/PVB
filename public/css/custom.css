@@ -104,3 +104,38 @@ img.ProfileImg {
 	position: relative;
 }
 
+.friendsRequest {
+	width:100%; 
+	float:left; 
+	position:relative;
+	border-bottom: 2px solid #5F021F;
+}
+
+.friendsRequest > a.btn {float: right;	margin-top: 28px;}
+.friendsRequest > span {
+    margin-top: 30px;
+    margin-left: 20px;
+    font: 17px 'Helvetica';
+    display: block;
+    float: left;
+    position: relative;
+}
+.circle{
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: navajowhite;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: -12px;
+}
+
+span.count {
+    color: #fff;
+    padding: 2px 0 0 9px;
+    display: block;
+}
+
+
+

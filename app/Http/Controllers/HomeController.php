@@ -6,7 +6,6 @@ use Auth;
 use Illuminate\Http\Request;
 use SocialApp\Models\Statuses;
 
-
 class HomeController extends Controller
 {
     public function index()

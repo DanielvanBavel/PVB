@@ -7,8 +7,13 @@
             @if (Auth::check())
                 <ul class="nav navbar-nav">
                     <li><a href="{{ route('home') }}">Tijdlijn</a></li>
-                    <li><a href="{{ route('friends.index') }}">Vrienden</a></li>
-                    <li><a href="{{ route('messages.index') }}">Berichten</a></li>
+                    <li><a href="{{ route('friends.index') }}">Vrienden</a>
+                    @if ($requests->count())    
+                        <span class="circle"><span class="count">{{$requests->count()}}</span></span>
+                    @endif
+                    </li>
+
+                    <li style="margin-left:20px"><a href="{{ route('messages.index') }}">Berichten</a></li>
                     <li><a href="{{ route('notification.index') }}">Meldingen</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
