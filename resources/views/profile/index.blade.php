@@ -35,12 +35,16 @@
             </div> -->
 
             <div class="friends mtop30 mbottom30">
-                <h3>Mijn vrienden</h3>
+                @if($profile->id === Auth::id())
+                    <h3>Mijn vrienden</h3>                    
+                    @else
+                     <h3>{{$profile->firstname}}'s Vrienden</h3>   
+                    @endif
                 @if(!$profile->friends()->count())
                     <span>Helaas, u heeft nog geen vrienden</span>
-                @else            
-                    @foreach ($profile->friends(0, 9) as $user)
-                        @include('templates/partials/friends')
+                @else                   
+                    @foreach (array_slice($profile->friends()->toArray(), 0, 9) as $user)              
+                        @include('templates/partials/friends')                     
                     @endforeach
                     <a class="SeeAll" <a href="{{route('profile.friends', $profile->id )}}">Klik hier voor volledige vriendenlijst</a>
                 @endif
@@ -53,13 +57,23 @@
         </div>
 
     <div class="col-lg-9 posts">
-        <h3>Mijn geplaatste berichten</h3>            
-            @if (!$statuses->count())
-                <span>Er zijn nog geen geplaatste berichten</span>
-            @else 
-                @foreach ($statuses as $status)               
-                    @include('templates/partials/profileStatuses')                    
-                @endforeach
-            @endif
+        <h3>Mijn geplaatste berichten</h3>  
+            @if ($profile->id === Auth::id()){{-- Statusen van de ingelogde gebruiker --}}
+                @if(!$statuses->count() )
+                    <p>Je hebt nog geen berichten geplaatst.</p>
+                @else 
+                    @foreach ($statuses as $status)         
+                        @include('templates/partials/profileStatuses')
+                    @endforeach
+                @endif
+            @else
+                @if($profile->statuses->count() === 0 )
+                    <p>Deze gebruiker heeft nog geen bericht geplaatst.</p>
+                @else 
+                    @foreach ($profile->statuses as $status)         
+                        @include('templates/partials/friendsStatuses')
+                    @endforeach
+                @endif
+            @endif                  
     </div> 
 @stop

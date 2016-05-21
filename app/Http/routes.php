@@ -20,7 +20,7 @@ Route::get('/', [
  */
 
 Route::get('/register', [
-    'uses' => '\SocialApp\Http\Controllers\AuthController@getRegister',
+    'uses' => 'AuthController@getRegister',
     'as' => 'auth.register',
     'middleware' => ['guest'],
 ]);
@@ -58,10 +58,20 @@ Route::get('/vraaghulp', [
     'middleware' => ['auth'],
 ]);
 
+Route::get('/register/admin', [
+    'uses'  => 'AuthController@registerAsAdmin',
+    'as'    => 'auth.register.admin',
+    'middleware' => ['guest'],
+]);
 
+Route::post('/register/admin' , [
+    'uses'  => 'AuthController@postRegisterAdmin',
+    'middleware' => ['guest'],
+]);
 
-
-/*Messages*/
+/*
+* Messages
+*/
 
 Route::get('/berichten', [
     'uses' => 'MessageController@getMessages',

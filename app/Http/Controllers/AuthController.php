@@ -5,9 +5,11 @@ namespace SocialApp\Http\Controllers;
 use Auth;
 use Carbon\Carbon;
 use SocialApp\Models\User;
+use SocialApp\Models\Admin;
 use Illuminate\Http\Request;
 use SocialApp\Http\Requests\RegisterRequest;
 use SocialApp\Http\Requests\LoginRequest;
+use SocialApp\Http\Requests\AdminRegisterRequest;
 
 class AuthController extends Controller
 {
@@ -36,7 +38,15 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(LoginRequest $request) {
+    public function postLogin(LoginRequest $request, Admin $admin) {
+        
+        /* bestaat admin gebruiker*/
+        // dd($admin->user());
+
+        // if($admin->user()->id)
+
+        /* is de admin gebruiker gekoppeld aan een user */   
+
         if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
             return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
         }
@@ -47,12 +57,28 @@ class AuthController extends Controller
         return view('auth.recover');
     }
 
-    public function PostPasswordForgotten(RecoverRequest $request) {
+    public function postPasswordForgotten(RecoverRequest $request) {
         echo "recover";
     }
 
     public function askHelp() {
         return view('auth.askhelp');
+    }
+
+    public function registerAsAdmin() {
+        return view('auth.registerAdmin');
+    }
+
+    public function postRegisterAdmin(AdminRegisterRequest $request) {
+        Admin::create([
+            'user_id' => 1,
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+        return redirect()
+            ->route('home')
+            ->with('info', 'Het admin account is aangemaakt, u kunt nu inloggen en iemand helpen');
     }
 
     public function getSignout() {

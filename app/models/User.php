@@ -48,11 +48,10 @@ Class User extends Model implements AuthenticatableContract
         return $this->profile_img;
     }    
 
-    public function isFriendsWith(User $user)
-    {
+    public function isFriendsWith(User $user) {
        return (bool) $this->friends()->where('id', $user->id)->count();
     }
-    
+  
     public function myFriends() {
         return $this->BelongsToMany('\SocialApp\Models\User', 'friends', 'user_id', 'friend_id');
     }
@@ -78,13 +77,15 @@ Class User extends Model implements AuthenticatableContract
         return $this->hasMany('\SocialApp\Models\Status', 'user_id');
     }
 
-    public function likes()
-    {
+    public function likes() {
         return $this->hasMany('SocialApp\Models\Like', 'user_id');
     }
 
-    public function hasLikedStatus(Status $status)
-    {
+    public function hasLikedStatus(Status $status) {
        return (bool) $status->likes->where('user_id', $this->id)->count();
+    }
+
+    public function admin(User $user) {
+        return $this->BelongsTo('\SocialApp\Models\Admin', 'user_id');
     }
 }

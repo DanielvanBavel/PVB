@@ -23,7 +23,7 @@
             @if (!$statuses->count())
                 <span>Er zijn nog geen geplaatste berichten</span>
             @else 
-                @foreach ($statuses as $status)                    
+                @foreach ($statuses as $status)                                 
                     @include('templates/partials/statuses')                    
                 @endforeach
             @endif

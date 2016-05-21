@@ -57,14 +57,16 @@ a.SeeAll {
 	display: block;
 	float: left;
 	position: relative;
+    padding-left: 10px;
+    margin-bottom: 20px;
 }
+
 
 .LetSomeoneHelpMe {
 	float: left;
 	background: #f8f8f8;
 	position: relative;
-	padding-left: 15px;
-	padding-right: 15px;
+    padding: 0 15px 20px 15px;
 }
 
 .pictures {
@@ -73,8 +75,15 @@ a.SeeAll {
 }
 
 li.welcomeUser {
-	color: #777;
-	margin-top: 15px;
+    color: #FFF;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+li.welcomeUser > a {
+    float: right;
+    display: block;
+    margin-top: -15px;
 }
 
 a.forgetPass {
@@ -85,18 +94,11 @@ a.forgetPass {
 
 .profile-img {
 	margin: 10px 0 0 10px;
-
 }
 
 .btnFixMar {
 	margin: -45px 30px 0 0;
 	display: block;
-}
-
-li.welcomeUser > a {
-    float: right;
-    display: block;
-    margin-top: -15px;
 }
 
 img.ProfileBanner {
@@ -105,7 +107,8 @@ img.ProfileBanner {
 
 img.ProfileImg {
     position: absolute;
-    margin: -110px 0 0 10px;
+    top: 100px;
+    left: 25px;
 }
 
 .content {
@@ -129,26 +132,54 @@ img.ProfileImg {
     float: left;
     position: relative;
 }
-.circle{
+.circle {
     display: block;
     width: 25px;
     height: 25px;
-    background: navajowhite;
+    background: #235B2E;
     border-radius: 50%;
     position: absolute;
-    top: 15px;
-    right: -12px;
+    top: 13px;
+    right: -13px;
 }
 
 span.count {
     color: #fff;
-    padding: 2px 0 0 9px;
+    padding: 2px 0 0 8px;
     display: block;
 }
 
-.media.Posts{
-	margin-bottom: 25px;
+.media.Posts {
+    margin-bottom: 25px;
+    padding: 15px;
 }
 
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
 
+a {
+    color: #00bfff;
+}
 
+p {
+    font-size: 16px;
+}
+
+.navbar-default {
+    background-color: #5F021F;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #FFF;
+    font-size: 16px;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #ADADAD;
+}

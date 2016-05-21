@@ -11,7 +11,7 @@
 	            <p>{{ $user->place }}</p>
 	        @endif
 			
-			@if($user->friends())
+			@if(Auth::user()->isFriendsWith($user))
 				<span class="fl-r btnFixMar">Al vrienden</span>
 			@else 
 				<a class="btn btn-primary fl-r btnFixMar" href="{{route('friends.add', $user->id)}}">	Vriend toevoegen

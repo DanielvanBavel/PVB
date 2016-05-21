@@ -8,13 +8,11 @@ class Like extends Model
 {
     protected $table = 'likeable';
 
-    public function likeable()
-    {
+    public function likeable() {
         return $this->morphTo();
     }
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo('SocialApp\Models\User', 'user_id');
     }
 }
