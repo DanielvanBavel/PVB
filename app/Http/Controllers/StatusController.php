@@ -19,9 +19,9 @@ class StatusController extends Controller
             'body' => $request->input('status'),
         ]);
         
-		// return redirect()
-		// 		->route('home')
-		// 		->with('info', 'Status is geplaatst');
+		return redirect()
+				->route('home')
+				->with('info', 'Status is geplaatst');
 	}
 
 	public function postReply(Request $request, $statusId)
