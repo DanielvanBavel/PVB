@@ -42,7 +42,7 @@
                     <span class="help-block">{{ $errors->first("reply-{$status->id}") }}</span>
                 @endif
                 </div>
-                <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm">
+                <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm" id="submitReply">
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>
         </div>
