@@ -30,6 +30,7 @@ textarea {	resize: none;	outline: none;}
 .Userinfo.Block, .fotoBlock {
 	background: #f8f8f8;
 	float: left;
+    width: 100%;
 }
 
 .Userinfo.Block > span {
@@ -45,6 +46,19 @@ textarea {	resize: none;	outline: none;}
     background: #f8f8f8;
     position: relative;
     width: 100%;
+}
+
+span.ifFriends {
+    position: absolute;
+    right: 40px;
+    top: 40%;
+    display: block;
+}
+
+.addFriendBtn {
+    position: absolute;
+    top: 30%;
+    right: 30px;
 }
 
 
@@ -94,6 +108,15 @@ a.forgetPass {
 
 .profile-img {
 	margin: 10px 0 0 10px;
+}
+
+img.ProfileImg:hover:after {
+    content: "";
+    width: 100%;
+    background: #fff;
+    opacity: 0.4;
+    position: absolute;
+    bottom: 0;
 }
 
 .btnFixMar {
@@ -182,4 +205,15 @@ p {
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
     color: #ADADAD;
+}
+
+.navbar {
+    border-radius: 0px; 
+}
+.navbar {
+    border: none; 
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #FFFFFF;
 }

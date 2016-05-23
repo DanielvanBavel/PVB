@@ -45,6 +45,6 @@ Class ProfileController extends Controller
 
     public function getMinePosts() {
        return Status::where('user_id', Auth::user()->id)
-              ->whereNull('parent_id')->get();
+              ->whereNull('parent_id')->orderBy('created_at', 'desc')->get();
     }
 }

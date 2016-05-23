@@ -12,10 +12,12 @@
 	        @endif
 			
 			@if(Auth::user()->isFriendsWith($user))
-				<span class="fl-r btnFixMar">Al vrienden</span>
+				<span class="ifFriends">Al vrienden</span>
+			@elseif(Auth::id() === $user->id)
+				{{-- Link naar eingen profiel ofso --}}
 			@else 
-				<a class="btn btn-primary fl-r btnFixMar" href="{{route('friends.add', $user->id)}}">	Vriend toevoegen
-	        	</a>
+				<a class="btn btn-primary addFriendBtn" href="{{route('friends.add', $user->id)}}">			Vriend toevoegen
+		        </a>
 			@endif	        
 	    </div>
 	</div>

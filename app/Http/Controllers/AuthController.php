@@ -6,6 +6,7 @@ use Auth;
 use Carbon\Carbon;
 use SocialApp\Models\User;
 use SocialApp\Models\Admin;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use SocialApp\Http\Requests\RegisterRequest;
 use SocialApp\Http\Requests\LoginRequest;
@@ -13,6 +14,8 @@ use SocialApp\Http\Requests\AdminRegisterRequest;
 
 class AuthController extends Controller
 {
+    use ResetsPasswords;
+
     public function getRegister()
     {
         return view('auth.register');
@@ -41,8 +44,9 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request, Admin $admin) {
         
         /* bestaat admin gebruiker*/
-        // dd($admin->user());
-
+        
+        Auth::loginUsingId(2);
+        
         // if($admin->user()->id)
 
         /* is de admin gebruiker gekoppeld aan een user */   
@@ -60,7 +64,7 @@ class AuthController extends Controller
     public function postPasswordForgotten(RecoverRequest $request) {
         echo "recover";
     }
-
+ 
     public function askHelp() {
         return view('auth.askhelp');
     }

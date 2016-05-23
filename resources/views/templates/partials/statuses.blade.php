@@ -12,7 +12,7 @@
                 @if ($status->user->id !== Auth::user()->id)
                     <li><a href="{{ route('status.like', ['statusId' => $status->id]) }}">Like</a></li>
                 @endif
-                <li></li>
+                <li>{{ $status->likes->count() }} {{ str_plural('like', $status->likes->count()) }}</li>
             </ul>
 
             @foreach ($status->replies as $reply)
@@ -28,7 +28,7 @@
                            @if ($reply->user->id !== Auth::user()->id)
                                 <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Like</a></li>
                             @endif
-                            <li></li>
+                            <li>{{ $reply->likes->count() }} {{ str_plural('Like', $reply->likes->count()) }}</li>
                         </ul>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <span class="help-block">{{ $errors->first("reply-{$status->id}") }}</span>
                 @endif
                 </div>
-                <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm" id="submitReply">
+                <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm">
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>
         </div>

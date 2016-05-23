@@ -51,6 +51,15 @@ Route::get('/wachtwoordvergeten', [
     'as' => 'auth.forgetPass',
     'middleware' => ['guest'],
 ]);
+// 
+// Route::get('wachtwoord/vergeten/{token?}', [
+//     'AuthController@showResetForm',
+//     'as' => 'auth.forgetPass',
+//     'middleware' => ['guest'],
+// ]);
+
+// Route::post('password/email', 'AuthController@sendResetLinkEmail');
+// Route::post('password/reset', 'AuthController@reset');
 
 Route::get('/vraaghulp', [
     'uses'  => 'AuthController@askHelp',
@@ -138,11 +147,11 @@ Route::get('/vrienden/add/{user}', [
 * Meldingen
 */
 
-Route::get('/meldingen', [
-    'uses' => 'NotificationController@index',
-    'as'    => 'notification.index',
-    'middleware' => ['auth'],
-]);
+// Route::get('/meldingen', [
+//     'uses' => 'NotificationController@index',
+//     'as'    => 'notification.index',
+//     'middleware' => ['auth'],
+// ]);
 
 /*
 * Statussen 
@@ -174,4 +183,5 @@ Route::get('/status/{statusId}/like', [
 Route::get('/zoeken', [
     'uses' => 'SearchController@getResults',
     'as' => 'search.results',
+    'middleware' => ['auth'],
 ]);
