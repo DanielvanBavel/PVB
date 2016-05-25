@@ -7,6 +7,7 @@ use DB;
 use SocialApp\Models\User;
 use SocialApp\Models\Status;
 use Illuminate\Http\Request;
+use SocialApp\Http\Requests\ProfileRequest;
 
 Class ProfileController extends Controller
 {

@@ -24,8 +24,12 @@ class ProfileRequest extends Request
     public function rules()
     {
         return [
-            'firstname' => 'alpha|min:3|max:20',
-            'lastname' => 'alpha|max:35',
+            'firstname'     => 'alpha|min:3|max:20',
+            'lastname'      => 'max:35',
+            'adres'         => '',
+            'zipcode'       => '',
+            'place'         => '',
+            'phonenumber'   => 'max:10:',
         ];
     }
 

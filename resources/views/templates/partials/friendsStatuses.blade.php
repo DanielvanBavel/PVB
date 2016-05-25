@@ -13,7 +13,7 @@
                 @if ($status->id !== $profile->id)
                     <li><a href="{{ route('status.like', ['statusId' => $profile->id]) }}">Like</a></li>
                 @endif
-                <li></li>
+                <li>{{ $status->likes->count() }} {{ str_plural('Like', $status->likes->count()) }}</li>
             </ul>
 
             @foreach ($status->replies as $reply)                           
@@ -29,7 +29,7 @@
                            @if ($reply->user->id !== $profile->id)
                                 <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Like</a></li>
                             @endif
-                            <li></li>
+                            <li>{{ $reply->likes->count() }} {{ str_plural('Like', $reply->likes->count()) }}</li>
                         </ul>
                     </div>
                 </div>

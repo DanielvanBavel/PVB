@@ -7,6 +7,7 @@
 .height80 {height: 80px;}
 .mbotpad10 {padding-bottom: 10px;}
 .mbottom30 {margin-bottom: 30px;}
+.pbottom30 {padding-bottom: 25px;}
 .mbottom60 {margin-bottom: 60px;}
 
 .fl-r {	float: right;}
@@ -56,11 +57,9 @@ span.ifFriends {
 }
 
 .addFriendBtn {
-    position: absolute;
-    top: 30%;
-    right: 30px;
+    margin-left: 15px;
+    margin-bottom: 20px;
 }
-
 
 .friends > h3, .friends > span {
 	margin-left: 15px;
@@ -110,13 +109,18 @@ a.forgetPass {
 	margin: 10px 0 0 10px;
 }
 
-img.ProfileImg:hover:after {
+img.ProfileImg::after {
     content: "";
     width: 100%;
     background: #fff;
     opacity: 0.4;
-    position: absolute;
+    position: relative;
     bottom: 0;
+    height: 30px
+}
+
+img.ProfileImg:hover {
+    cursor: pointer;
 }
 
 .btnFixMar {

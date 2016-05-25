@@ -9,7 +9,7 @@
     </div>
         <div class="col-lg-3">
             <h3>Info</h3>
-            <div class="Userinfo Block">
+            <div class="Userinfo Block pbottom30">
                 <span>Naam: {{ $profile->getName() }}</span>
                 @if(!$profile->adres == '')
                     <span>Adres: {{ $profile->adres }}</span>
@@ -44,7 +44,7 @@
                 @endif--}}
             </div> -->
 
-            <div class="friends mtop30 mbottom30">
+            <div class="friends mtop30 mbottom30 pbottom30">
                 @if($profile->id === Auth::id())
                     <h3>Mijn vrienden</h3>                    
                     @else
@@ -68,7 +68,7 @@
             @endif
             
             @if($profile->id !== Auth::id())
-               @if(Auth::user()->isFriendsWith($user))
+                @if(Auth::user()->isFriendsWith($profile))
                     <span>je bent al vrienden met deze gebruiker</span>                    
                 @else
                     <div class="friends">
