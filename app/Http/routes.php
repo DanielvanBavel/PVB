@@ -52,22 +52,10 @@ Route::get('/wachtwoordvergeten', [
     'middleware' => ['guest'],
 ]);
 
-Route::get('/vraaghulp', [
-    'uses'  => 'AuthController@askHelp',
-    'as' => 'auth.askHelp',
-    'middleware' => ['auth'],
-]);
-
-Route::get('/register/admin', [
-    'uses'  => 'AuthController@registerAsAdmin',
-    'as'    => 'auth.register.admin',
-    'middleware' => ['guest'],
-]);
-
-Route::post('/register/admin' , [
-    'uses'  => 'AuthController@postRegisterAdmin',
-    'middleware' => ['guest'],
-]);
+// Route::post('/register/admin' , [
+//     'uses'  => 'AuthController@postRegisterAdmin',
+//     'middleware' => ['guest'],
+// ]);
 
 /*
 * Messages
@@ -174,4 +162,44 @@ Route::get('/status/{statusId}/like', [
 Route::get('/zoeken', [
     'uses' => 'SearchController@getResults',
     'as' => 'search.results',
+]);
+
+/**
+ * Admin
+ */
+
+Route::get('/vraaghulp', [
+    'uses'  => 'AuthController@askHelp',
+    'as' => 'auth.askHelp',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/vraaghulp', [
+    'uses'  => 'AuthController@sendAdminRequest',
+    'as' => 'auth.askedHelp',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/verstuurd', [
+    'uses'  => 'AuthController@send',
+    'as' => 'auth.send',
+    'middleware' => ['auth'],
+]);
+
+// Route::get('/admin/{activation_code}', [ 
+//     'uses'  => 'AuthController@createAdmin',
+//     'as' => 'auth.createAdmin',
+//     'middleware' => ['auth'],
+//     ]);
+
+Route::get('/register/admin/{activation_code}', [
+    'uses'  => 'AuthController@registerAsAdmin',
+    'as'    => 'auth.register.admin',
+    'middleware' => ['guest'],
+]);
+
+Route::post('/register/admin/{activation_code}', [
+    'uses'  => 'AuthController@createAdmin',
+    'as'    => 'auth.create.admin',
+    'middleware' => ['guest'],
 ]);

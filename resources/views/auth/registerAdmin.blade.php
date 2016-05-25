@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-8">
             <form class="form-vertical" role="form" method="post" 
-                        action="{{ route('auth.register.admin') }}">
+                        action="{{ route('auth.create.admin', $activation_code) }}">
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="control-label">Email Adres</label>
                     <input type="text" name="email" class="form-control" id="email" value="{{ Request::old('email') ?: '' }}">

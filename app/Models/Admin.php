@@ -17,7 +17,8 @@ class Admin extends Model implements AuthenticatableContract
     protected $fillable = [
         'user_id',
         'email',
-        'password'
+        'password',
+        'activation_code'
     ];
 
     protected $hidden = [
