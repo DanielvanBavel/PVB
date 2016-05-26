@@ -2,14 +2,10 @@
 
 namespace SocialApp\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-Class User extends Model implements AuthenticatableContract
+class User extends Authenticatable
 {
-    use Authenticatable;
-
     protected $table = 'users';
 
     // protected $dates = ['created_at', 'updated_at', 'birthdate'];
@@ -31,6 +27,11 @@ Class User extends Model implements AuthenticatableContract
         'password',
         'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return false;
+    }
 
     public function getName() {
         return $this->firstname . " " . $this->lastname;

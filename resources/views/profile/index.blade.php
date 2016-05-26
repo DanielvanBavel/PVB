@@ -4,8 +4,10 @@
     <div class="col-lg-12 mbottom60">
         <img alt="" class="ProfileBanner" src="http://rockstartemplate.com/design/Blue_glossy_Background.jpg" 
         width="100%" height="200">
-
-        <img class="ProfileImg" src="@if(!$profile->profile_img) {{ URL::to('/') }}/images/users/profile-img.jpg  @else {{ $profile->profile_img }} @endif" width="150" height="150">
+        
+        <div class="test">
+            <img class="ProfileImg" src="@if(!$profile->profile_img) {{ URL::to('/') }}/images/users/profile-img.jpg  @else {{ $profile->profile_img }} @endif">
+        </div>
     </div>
         <div class="col-lg-3">
             <h3>Info</h3>

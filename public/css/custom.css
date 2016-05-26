@@ -57,8 +57,9 @@ span.ifFriends {
 }
 
 .addFriendBtn {
-    margin-left: 15px;
-    margin-bottom: 20px;
+    position: absolute;
+    right: 6%;
+    top: 30%;
 }
 
 .friends > h3, .friends > span {
@@ -109,17 +110,35 @@ a.forgetPass {
 	margin: 10px 0 0 10px;
 }
 
-img.ProfileImg::after {
-    content: "";
-    width: 100%;
-    background: #fff;
-    opacity: 0.4;
-    position: relative;
-    bottom: 0;
-    height: 30px
+.test {
+    position: absolute;
+    top: 100px;
+    left: 25px;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
 }
 
-img.ProfileImg:hover {
+img.ProfileImg {
+    position: absolute;
+    margin: auto;
+    top: -9999px;
+    right: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    width: 100%;
+    height: auto;
+}
+
+.test:hover:after {
+    content: "Upload image";
+    background: #fff;
+    opacity: 0.4;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -130,12 +149,6 @@ img.ProfileImg:hover {
 
 img.ProfileBanner {
     position: relative;
-}
-
-img.ProfileImg {
-    position: absolute;
-    top: 100px;
-    left: 25px;
 }
 
 .content {

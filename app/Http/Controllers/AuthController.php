@@ -3,6 +3,7 @@
 namespace SocialApp\Http\Controllers;
 
 use Auth;
+use Hash;
 use Carbon\Carbon;
 use SocialApp\Models\User;
 use SocialApp\Models\Admin;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use SocialApp\Http\Requests\RegisterRequest;
 use SocialApp\Http\Requests\LoginRequest;
 use SocialApp\Http\Requests\AdminRegisterRequest;
+use SocialApp\Http\Requests\AdminInviteRequest;
 
 class AuthController extends Controller
 {
@@ -38,19 +40,24 @@ class AuthController extends Controller
 		return view('auth.login');
 	}
 
-	public function postLogin(LoginRequest $request, Admin $admin) {
-		
-		/* bestaat admin gebruiker*/
-		// dd($admin->user());
+	public function postLogin(LoginRequest $request, Admin $admin)
+	{	
+		$credentials = $request->only(['email', 'password']);
+		$remember = $request->has('remember');
 
-		// if($admin->user()->id)
-
-		/* is de admin gebruiker gekoppeld aan een user */   
-
-		if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
-			return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
+		if (Auth::attempt($credentials, $remember)) {	
+			return redirect()->route('home')->with('info', 'Je bent succesvol ingelogd');
 		}
-		return redirect()->route('home')->with('info', 'Je bent succesvol ingelogd');
+
+		$admin = Admin::where('email', $request->email)->firstOrFail();
+		
+		if (Hash::check($request->password, $admin->password)) {
+			Auth::loginUsingId($admin->user_id);	
+		
+			return redirect()->route('home')->with('info', 'Je bent succesvol ingelogd als Administrator');
+		}
+
+		return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
 	}
 
 	public function getPasswordForgotten() {
@@ -66,28 +73,12 @@ class AuthController extends Controller
 		return view('auth.askhelp');
 	}
 
-	// public function registerAsAdmin() {
-	// 	return view('auth.registerAdmin');
-	// }
-
-	// public function postRegisterAdmin(AdminRegisterRequest $request) {
-	// 	Admin::create([
-	// 		'user_id' => 1,
-	// 		'email' => $request->input('email'),
-	// 		'password' => bcrypt($request->input('password'))
-	// 	]);
-
-	// 	return redirect()
-	// 		->route('home')
-	// 		->with('info', 'Het admin account is aangemaakt, u kunt nu inloggen en iemand helpen');
-	// }
-
 	public function getSignout() {
 		Auth::logout();
 		return redirect()->route('home');
 	}
 
-	public function sendAdminRequest(request $request) {
+	public function sendAdminRequest(AdminInviteRequest $request) {
 		if ($request->input('email')) {
 			$activation_code = $this->generateRandomString();
 			$this->setActivationCode($activation_code);
@@ -101,7 +92,6 @@ class AuthController extends Controller
 	}
 
 	public function setActivationCode($rndStr) {
-
 		 Admin::create([
 			'user_id' => Auth::id(),
 			'activation_code' => $rndStr
@@ -122,7 +112,7 @@ class AuthController extends Controller
 			return view('auth.registerAdmin')->with('activation_code', $activation_code);
 		};
 
-		return redirect('/');
+		return redirect()->route('home');
 	}
 
 	public function createAdmin(AdminRegisterRequest $request, $activation_code) {
@@ -131,6 +121,6 @@ class AuthController extends Controller
 			'password' => bcrypt($request->input('password')),
 			'activation_code' => ''
 		]);
-		return redirect('/');
+		return redirect()->route('home');
 	}
 }

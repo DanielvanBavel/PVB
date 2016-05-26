@@ -8,11 +8,11 @@
             <h4 class="media-heading"><a href="{{ route('profile.index', ['id' => $status->id]) }}">{{ Auth::user()->getName() }}</a></h4>
             <p>{{ $status->body }}</p>
             <ul class="list-inline">
-                <li>{{ $profile->created_at->diffForHumans() }}</li>
-                @if ($status->id !== Auth::user()->id)
+                <li>{{ $status->created_at->diffForHumans() }}</li>
+                @if ($profile->id !== Auth::user()->id)
                     <li><a href="{{ route('status.like', ['statusId' => $profile->id]) }}">Like</a></li>
                 @endif
-                <li>{{ $status->likes->count() }} {{ str_plural('Like', $status->likes->count()) }}</li>
+                <li>{{$status->likes->count() }} {{ str_plural('like', $status->likes->count()) }}</li>
             </ul>
 
             @foreach ($status->replies as $reply)
@@ -28,7 +28,8 @@
                            @if ($reply->user->id !== Auth::user()->id)
                                 <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Like</a></li>
                             @endif
-                            <li>{{ $reply->likes->count() }} {{ str_plural('Like', $reply->likes->count()) }}</li>                        </ul>
+                            <li>{{ $reply->likes->count() }} {{ str_plural('Like', $reply->likes->count()) }}</li>                       
+                        </ul>
                     </div>
                 </div>
             @endforeach

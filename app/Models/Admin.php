@@ -2,16 +2,10 @@
 
 namespace SocialApp\Models;
 
-use Auth;
-use DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model implements AuthenticatableContract
+class Admin extends Authenticatable
 {
-    use Authenticatable;
-
     protected $table = 'admin';
 
     protected $fillable = [
@@ -25,6 +19,11 @@ class Admin extends Model implements AuthenticatableContract
         'password',
         'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return true;
+    }
 
     public function user() {
         return $this->BelongsTo('SocialApp\Models\User', 'user_id');

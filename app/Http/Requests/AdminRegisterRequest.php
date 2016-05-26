@@ -24,7 +24,7 @@ class AdminRegisterRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|unique:users|email|max:255',
+            'email' => 'required|unique:admin|email|max:255',
             'password' => 'required|min:6'
         ];
     }

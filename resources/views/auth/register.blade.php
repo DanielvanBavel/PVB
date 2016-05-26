@@ -9,7 +9,7 @@
                 <div class="col-lg-5">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="control-label">Email Adres</label>
-                        <input type="text" name="email" class="form-control" value="{{ Request::old('email') ?: '' }}">
+                        <input type="email" name="email" placeholder='info@ domain.com' class="form-control" value="{{ Request::old('email') ?: '' }}">
                         @if ($errors->has('email'))
                             <span class="help-block">{{ $errors->first('email') }}</span>
                         @endif
@@ -51,7 +51,7 @@
                 <div class="col-lg-5">
                     <div class="form-group{{ $errors->has('adres') ? ' has-error' : '' }}">
                         <label for="adres" class="control-label">Adres</label>
-                        <input type="text" name="adres" class="form-control" value="{{ Request::old('adres') ?: '' }}">
+                        <input type="text" name="adres" placeholder="Straatnaam 12" class="form-control" value="{{ Request::old('adres') ?: '' }}">
                         @if ($errors->has('adres'))
                             <span class="help-block">{{ $errors->first('adres') }}</span>
                         @endif
@@ -59,7 +59,7 @@
 
                     <div class="form-group{{ $errors->has('Zipcode') ? ' has-error' : '' }}">
                         <label for="Zipcode" class="control-label">Postcode</label>
-                        <input type="text" name="Zipcode" class="form-control" value="{{ Request::old('Zipcode') ?: '' }}">
+                        <input type="text" name="Zipcode" placeholder="1234AB" class="form-control" value="{{ Request::old('Zipcode') ?: '' }}">
                         @if ($errors->has('Zipcode'))
                             <span class="help-block">{{ $errors->first('Zipcode') }}</span>
                         @endif
@@ -67,37 +67,44 @@
 
                     <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
                         <label for="place" class="control-label">Plaats</label>
-                        <input type="text" name="place" class="form-control" value="{{ Request::old('place') ?: '' }}">
+                        <input type="text" name="place" placeholder="Plaatsnaam" class="form-control" value="{{ Request::old('place') ?: '' }}">
                         @if ($errors->has('place'))
                             <span class="help-block">{{ $errors->first('place') }}</span>
                         @endif
                     </div>
 
-                    <div class="form-group{{ $errors->has('province') ? ' has-error' : '' }}">
-                        <label for="province" class="control-label">Provincie</label>
-                        <input type="text" name="province" class="form-control" value="{{ Request::old('province') ?: '' }}">
-                        @if ($errors->has('province'))
-                            <span class="help-block">{{ $errors->first('province') }}</span>
-                        @endif
-                    </div>
+                <div class="form-group{{ $errors->has('province') ? ' has-error': '' }}">
+                    <label for="province" class="control-label">Provincie</label>
+                    <select name="province" class="form-control">
+                      <option>Zeeland</option>
+                      <option>Noord-Brabant</option>
+                      <option>Limburg</option>
+                      <option>Zuid-Holland</option>
+                      <option>Noord-Holland</option>
+                      <option>Utrecht</option>
+                      <option>Gelderland</option>
+                      <option>Overijssel</option>
+                      <option>Flevoland</option>
+                      <option>Drenthe</option>
+                      <option>Groningen</option>
+                      <option>Friesland</option>
+                    </select>
+                    @if ($errors->has('province'))
+                        <span class="help-block">{{ $errors->first('province') }}</span>
+                    @endif
+                </div>
 
-                    <div class="form-group{{ $errors->has('phonenumber') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('phonenumber') ? ' has-error' : '' }}">
                         <label for="phonenumber" class="control-label">Telefoonnummer</label>
-                        <input type="text" name="phonenumber" class="form-control" value="{{ Request::old('phonenumber') ?: '' }}">
+                        <input type="text" name="phonenumber" placeholder="0612345678" class="form-control" value="{{ Request::old('phonenumber') ?: '' }}">
                         @if ($errors->has('phonenumber'))
                             <span class="help-block">{{ $errors->first('phonenumber') }}</span>
                         @endif
                     </div>
                 </div>
 
-                <div class="form-group" style="float: left;
-    position: relative;
-    display: block;
-    width: 100%;">
-                    <button type="submit" class="btn btn-default" style="    float: left;
-    width: 20%;
-    margin-left: 32%;
-">Registeer nu</button>
+                <div class="form-group" style="float: left; position: relative; display: block;width: 100%;">
+                    <button type="submit" class="btn btn-default" style="float: left; width: 20%; margin-left: 32%;">Registeer nu</button>
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>
