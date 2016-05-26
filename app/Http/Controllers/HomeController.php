@@ -20,9 +20,4 @@ class HomeController extends Controller
         }
         return view('home');
     }
-
-    public function submitPost(Request $request)
-    {
-    	var_dump($request->input('status'));
-    }
 }

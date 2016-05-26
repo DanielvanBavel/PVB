@@ -13,7 +13,7 @@
                 @if ($status->id !== $profile->id)
                     <li><a href="{{ route('status.like', ['statusId' => $profile->id]) }}">Like</a></li>
                 @endif
-                <li></li>
+                <li>{{ $status->likes->count() }} {{ str_plural('Like', $status->likes->count()) }}</li>
             </ul>
 
             @foreach ($status->replies as $reply)                           
@@ -29,23 +29,27 @@
                            @if ($reply->user->id !== $profile->id)
                                 <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Like</a></li>
                             @endif
-                            <li></li>
+                            <li>{{ $reply->likes->count() }} {{ str_plural('Like', $reply->likes->count()) }}</li>
                         </ul>
                     </div>
                 </div>
             @endforeach
-
-            <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
-            <div class="form-group{{ $errors->has("reply-{$status->id}") ? ' has-error': '' }}">
-                <textarea name="reply-{{ $status->id }}" class="form-control" rows="2" 
-                    placeholder="Geef een reactie op dit bericht"></textarea>
-                @if ($errors->has("reply-{$status->id}"))
-                    <span class="help-block">{{ $errors->first("reply-{$status->id}") }}</span>
-                @endif
+            
+            @if(Auth::user()->isFriendsWith($profile))
+                <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
+                <div class="form-group{{ $errors->has("reply-{$status->id}") ? ' has-error': '' }}">
+                    <textarea name="reply-{{ $status->id }}" class="form-control" rows="2" 
+                        placeholder="Geef een reactie op dit bericht"></textarea>
+                    @if ($errors->has("reply-{$status->id}"))
+                        <span class="help-block">{{ $errors->first("reply-{$status->id}") }}</span>
+                    @endif
                 </div>
-                <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm">
-                <input type="hidden" name="_token" value="{{ Session::token() }}">
-            </form>
+                    <input type="submit" value="Plaats reactie" class="btn btn-default btn-sm">
+                    <input type="hidden" name="_token" value="{{ Session::token() }}">
+                </form>
+            @else
+                <p><strong>U kunt niet reageren op deze reactie, omdat u nog geen vrienden bent met deze gebruiker</strong></p>
+            @endif
         </div>
     </div>
 </div>

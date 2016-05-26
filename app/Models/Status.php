@@ -18,13 +18,15 @@ class Status extends Model
         return $this->BelongsTo('SocialApp\Models\User', 'user_id');
     }
 
-    public function scopeNotReply($query)
-    {
+    public function scopeNotReply($query) {
         return $query->whereNull('parent_id');
     }
 
-    public function replies()
-    {
+    public function replies() {
         return $this->hasMany(new Status, 'parent_id');
+    }
+
+    public function likes() {
+        return $this->morphMany('SocialApp\Models\Like', 'likeable');
     }
 }

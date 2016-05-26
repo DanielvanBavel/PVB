@@ -69,11 +69,6 @@ return [
             'driver' => 'eloquent',
             'model' => SocialApp\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

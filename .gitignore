@@ -5,3 +5,5 @@ Homestead.yaml
 Homestead.json
 .env
 app/Http/routes.php
+app/Http/Controllers/AuthController.php
+*.php

@@ -56,8 +56,20 @@
 
                 <div class="form-group{{ $errors->has('province') ? ' has-error': '' }}">
                     <label for="province" class="control-label">Provincie</label>
-                    <input type="text" name="province" class="form-control" 
-                        value="{{ Auth::user()->province }}">
+                    <select name="province" class="form-control" value="{{ Auth::user()->province }}">
+                      <option>Zeeland</option>
+                      <option>Noord-Brabant</option>
+                      <option>Limburg</option>
+                      <option>Zuid-Holland</option>
+                      <option>Noord-Holland</option>
+                      <option>Utrecht</option>
+                      <option>Gelderland</option>
+                      <option>Overijssel</option>
+                      <option>Flevoland</option>
+                      <option>Drenthe</option>
+                      <option>Groningen</option>
+                      <option>Friesland</option>
+                    </select>
                     @if ($errors->has('province'))
                         <span class="help-block">{{ $errors->first('province') }}</span>
                     @endif

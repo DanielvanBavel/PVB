@@ -24,7 +24,7 @@
                 <span>Er zijn nog geen geplaatste berichten</span>
             @else 
                 @foreach ($statuses as $status)                                 
-                    @include('templates/partials/statuses')                    
+                    @include('templates/partials/TimelineStatuses')                    
                 @endforeach
             @endif
         </div>

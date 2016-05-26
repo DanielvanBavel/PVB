@@ -7,6 +7,7 @@ use DB;
 use SocialApp\Models\User;
 use SocialApp\Models\Status;
 use Illuminate\Http\Request;
+use SocialApp\Http\Requests\ProfileRequest;
 
 Class ProfileController extends Controller
 {
@@ -45,6 +46,6 @@ Class ProfileController extends Controller
 
     public function getMinePosts() {
        return Status::where('user_id', Auth::user()->id)
-              ->whereNull('parent_id')->get();
+              ->whereNull('parent_id')->orderBy('created_at', 'desc')->get();
     }
 }

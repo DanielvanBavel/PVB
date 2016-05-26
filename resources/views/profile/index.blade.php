@@ -9,13 +9,23 @@
     </div>
         <div class="col-lg-3">
             <h3>Info</h3>
-            <div class="Userinfo Block">
+            <div class="Userinfo Block pbottom30">
                 <span>Naam: {{ $profile->getName() }}</span>
-                <span>Adres: {{ $profile->adres }}</span>
-                <span>Postcode: {{ $profile->zipcode }}</span>
-                <span>Woonplaats: {{ $profile->place }}</span>
-                <span>Provincie: {{ $profile->province }}</span>
-                <span>Telefoon nummer: {{ $profile->phonenumber }}</span>
+                @if(!$profile->adres == '')
+                    <span>Adres: {{ $profile->adres }}</span>
+                @endif
+                @if(!$profile->zipcode == '')
+                    <span>Postcode: {{ $profile->zipcode }}</span>
+                @endif
+                @if(!$profile->place == '')
+                    <span>Woonplaats: {{ $profile->place }}</span>
+                @endif
+                @if(!$profile->province == '')
+                    <span>Provincie: {{ $profile->province }}</span>
+                @endif
+                @if(!$profile->phonenumber == '')
+                    <span>Telefoon nummer: {{ $profile->phonenumber }}</span>
+                @endif
 
                 @if($profile->id === Auth::id())
                      <a class="btn btn-primary" href="{{ route('profile.edit')}}">Bewerk profiel</a>
@@ -34,7 +44,7 @@
                 @endif--}}
             </div> -->
 
-            <div class="friends mtop30 mbottom30">
+            <div class="friends mtop30 mbottom30 pbottom30">
                 @if($profile->id === Auth::id())
                     <h3>Mijn vrienden</h3>                    
                     @else
@@ -43,17 +53,31 @@
                 @if(!$profile->friends()->count())
                     <span>Helaas, u heeft nog geen vrienden</span>
                 @else                   
-                    @foreach (array_slice($profile->friends()->toArray(), 0, 9) as $user)              
+                    @foreach (array_slice($profile->friends()->toArray(), 0, 9) as $user)
                         @include('templates/partials/friends')                     
                     @endforeach
                     <a class="SeeAll" <a href="{{route('profile.friends', $profile->id )}}">Klik hier voor volledige vriendenlijst</a>
                 @endif
             </div>
             
+            @if($profile->id === Auth::id())
             <div class="LetSomeoneHelpMe">
                 <h3>Vraag hulp</h3>
                 <a href="{{ route('auth.askHelp')}}">Vraag hulp aan een bekende om mij te helpen met mijn account</a>
             </div>
+            @endif
+            
+            @if($profile->id !== Auth::id())
+                @if(Auth::user()->isFriendsWith($profile))
+                    <span>je bent al vrienden met deze gebruiker</span>                    
+                @else
+                    <div class="friends">
+                        <h3>voeg vriend toe</h3>
+                        <a class="btn btn-primary addFriendBtn" href="{{route('friends.add', $profile->id)}}">Vriend toevoegen
+                        </a>
+                    </div>
+                @endif
+            @endif
         </div>
 
     <div class="col-lg-9 posts">
@@ -70,7 +94,7 @@
                 @if($profile->statuses->count() === 0 )
                     <p>Deze gebruiker heeft nog geen bericht geplaatst.</p>
                 @else 
-                    @foreach ($profile->statuses as $status)         
+                    @foreach ($profile->statuses->sortBy('created_at') as $status)         
                         @include('templates/partials/friendsStatuses')
                     @endforeach
                 @endif

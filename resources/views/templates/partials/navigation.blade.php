@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('home') }}">SocialApp</a>
+            <span class="navbar-brand">SocialApp</span>
         </div>
         <div class="collapse navbar-collapse">
             @if (Auth::check())
@@ -13,11 +13,11 @@
                     @endif
                     </li>
 
-                    <li style="margin-left:20px"><a href="{{ route('messages.index') }}">Berichten</a></li>
-                    <li><a href="{{ route('notification.index') }}">Meldingen</a></li>
+                    {{-- <li style="margin-left:20px"><a href="{{ route('messages.index') }}">Berichten</a></li>
+                    <li><a href="{{ route('notification.index') }}">Meldingen</a></li>--}}
                 </ul>
                 <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-left:20px">
                         <input type="text" name="query" class="form-control" placeholder="zoek mensen">
                     </div>
                     <button type="submit" class="btn btn-default">Zoeken</button>
