@@ -29,7 +29,7 @@ Class ProfileController extends Controller
             'firstname'     => $request->input('firstname'),
             'lastname'      => $request->input('lastname'),
             'adres'         => $request->input('adres'),
-            'zipcode'       => $request->input('zipcode'),
+            'zipcode'       => str_replace(' ', '', $request->input('zipcode')),
             'place'         => $request->input('place'),
             'province'      => $request->input('province'),
             'phonenumber'   => $request->input('phonenumber'),

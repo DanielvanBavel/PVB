@@ -27,7 +27,12 @@ class AuthController extends Controller
 			'password' => bcrypt($request->input('password')),
 			'birthdate' => $request->input('birthdate'),
 			'firstname' => $request->input('firstname'),
-			'lastname' => $request->input('lastname')
+			'lastname' => $request->input('lastname'),
+			'adres'		=> $request->input('adres'),
+			'zipcode'	=> str_replace(' ', '', $request->input('Zipcode')),
+			'place'		=> $request->input('place'),
+			'province'	=> $request->input('province'),
+			'phonenumber'	=> $request->input('phonenumber')
 		]);
 
 		return redirect()
@@ -49,8 +54,12 @@ class AuthController extends Controller
 			return redirect()->route('home')->with('info', 'Je bent succesvol ingelogd');
 		}
 
-		$admin = Admin::where('email', $request->email)->firstOrFail();
-		
+		$admin = Admin::where('email', $request->email)->first();
+
+		if ($admin == null) {
+			return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
+		}
+
 		if (Hash::check($request->password, $admin->password)) {
 			Auth::loginUsingId($admin->user_id);	
 		
@@ -78,7 +87,7 @@ class AuthController extends Controller
 		return redirect()->route('home');
 	}
 
-	public function sendAdminRequest(AdminInviteRequest $request) {
+	public function sendAdminRequest(request $request) {
 		if ($request->input('email')) {
 			$activation_code = $this->generateRandomString();
 			$this->setActivationCode($activation_code);
