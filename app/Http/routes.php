@@ -22,34 +22,34 @@ Route::get('/', [
 Route::get('/register', [
     'uses' => 'AuthController@getRegister',
     'as' => 'auth.register',
-    'middleware' => ['guest'],
+    'middleware' => 'guest',
 ]);
 
 Route::post('/register', [
-    'uses' => '\SocialApp\Http\Controllers\AuthController@postRegister',
-    'middleware' => ['guest'],
+    'uses' => 'AuthController@postRegister',
+    'middleware' => 'guest',
 ]);
 
 Route::get('/login', [
-    'uses' => '\SocialApp\Http\Controllers\AuthController@getLogin',
+    'uses' => 'AuthController@getLogin',
     'as' => 'auth.login',
-    'middleware' => ['guest'],
+    'middleware' => 'guest',
 ]);
 
 Route::post('/login', [
-    'uses' => '\SocialApp\Http\Controllers\AuthController@postLogin',
-    'middleware' => ['guest'],
+    'uses' => 'AuthController@postLogin',
+    'middleware' => 'guest',
 ]);
 
 Route::get('/uitloggen', [
-    'uses' => '\SocialApp\Http\Controllers\AuthController@getSignout',
+    'uses' => 'AuthController@getSignout',
     'as' => 'auth.signout',
 ]);
 
 Route::get('/wachtwoordvergeten', [
-    'uses'  => '\SocialApp\Http\Controllers\AuthController@getPasswordForgotten',
+    'uses'  => 'AuthController@getPasswordForgotten',
     'as' => 'auth.forgetPass',
-    'middleware' => ['guest'],
+    'middleware' => 'guest',
 ]);
 
 Route::get('/register/admin/{activation_code}', [
@@ -70,7 +70,7 @@ Route::post('/register/admin/{activation_code}', [
 Route::get('/berichten', [
     'uses' => 'MessageController@getMessages',
     'as' => 'messages.index',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 
@@ -81,42 +81,42 @@ Route::get('/berichten', [
 Route::get('/profiel/{user}', [
     'uses' => 'ProfileController@getProfile',
     'as' => 'profile.index',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/mijnprofiel/edit', [
     'uses' => 'ProfileController@getEdit',
     'as' => 'profile.edit',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::post('/mijnprofiel/edit', [
     'uses' => 'ProfileController@postEdit',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/profiel/{user}/vrienden', [
     'uses' => 'ProfileController@viewFriendsFromProfile',
     'as'   => 'profile.friends',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/vraaghulp', [
     'uses'  => 'AuthController@askHelp',
     'as' => 'auth.askHelp',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::post('/vraaghulp', [
     'uses'  => 'AuthController@sendAdminRequest',
     'as' => 'auth.askedHelp',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/verstuurd', [
     'uses'  => 'AuthController@send',
     'as' => 'auth.send',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 /*
@@ -126,24 +126,24 @@ Route::get('/verstuurd', [
 Route::get('/vrienden', [
     'uses' => 'FriendsController@getFriends',
     'as'   => 'friends.index',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/vrienden/accept/{user}', [
     'uses' => 'FriendsController@AcceptFriendsRequests',
     'as' => 'friends.accept',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::post('/vrienden/accept/{user}', [
     'uses' => 'FriendsController@AcceptFriendsRequests',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/vrienden/add/{user}', [
     'uses'       => 'FriendsController@SendFriendRequest',
     'as'         => 'friends.add',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 /*
@@ -153,29 +153,29 @@ Route::get('/vrienden/add/{user}', [
 Route::get('/meldingen', [
     'uses' => 'NotificationController@index',
     'as'    => 'notification.index',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 /*
-* Statussen 
+* Statussen
 */
 
 Route::post('/status', [
     'uses' => 'StatusController@postStatus',
     'as' => 'status.index',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::post('/status/{statusId}/reageer', [
     'uses' => 'StatusController@postReply',
     'as' => 'status.reply',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 Route::get('/status/{statusId}/like', [
     'uses' => 'StatusController@getLike',
     'as' => 'status.like',
-    'middleware' => ['auth'],
+    'middleware' => 'auth',
 ]);
 
 
