@@ -25,8 +25,7 @@
                     
                     <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
                         <label for="birthdate" class="control-label">Geboortedatum</label>
-                        <input type="text" pattern="\d{1,2}-\d{1,2}-\d{4}" name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}" 
-                                oninvalid="this.setCustomValidity('De gevraagde input is: dd-mm-yyyy')">
+                        <input type="text" pattern="\d{1,2}-\d{1,2}-\d{4}" name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}">
                         @if ($errors->has('birthdate'))
                             <span class="help-block">{{ $errors->first('birthdate') }}</span>
                         @endif
@@ -60,8 +59,7 @@
 
                     <div class="form-group{{ $errors->has('Zipcode') ? ' has-error' : '' }}">
                         <label for="Zipcode" class="control-label">Postcode</label>
-                        <input type="text" name="Zipcode" placeholder="1234AB" class="form-control" pattern="[1-9][0-9]{3}\s?[a-zA-Z]{2}" value="{{ Request::old('Zipcode') ?: '' }}" 
-                            oninvalid="this.setCustomValidity('De gevraagde input is: 1234AB')">
+                        <input type="text" name="Zipcode" placeholder="1234AB" class="form-control" pattern="[1-9][0-9]{3}\s?[a-zA-Z]{2}" value="{{ Request::old('Zipcode') ?: '' }}">
                         @if ($errors->has('Zipcode'))
                             <span class="help-block">{{ $errors->first('Zipcode') }}</span>
                         @endif

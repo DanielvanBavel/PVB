@@ -87,12 +87,13 @@ span.ifFriends {
 }
 
 a.SeeAll {
-	width: 100%;
-	display: block;
-	float: left;
-	position: relative;
-    padding-left: 10px;
-    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+    float: left;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+    bottom: -20px;
+    margin-bottom: 5px;
 }
 
 

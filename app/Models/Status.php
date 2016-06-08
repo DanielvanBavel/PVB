@@ -27,6 +27,6 @@ class Status extends Model
     }
 
     public function likes() {
-        return $this->morphMany('SocialApp\Models\Like', 'user');
+        return $this->morphMany('SocialApp\Models\Like', 'likeable');
     }
 }

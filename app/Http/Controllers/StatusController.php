@@ -47,25 +47,25 @@ class StatusController extends Controller
         return redirect()->back();
     }
 
-	public function getLikes($statusId) {
+	public function getLike($statusId)
+    {
+        $status = Status::find($statusId);
 
-        dd($statusId);
+        if (!$status) {
+            return redirect()->route('home');
+        }
 
-       // $status = Status::find($statusId);
+        if (!Auth::user()->isFriendsWith($status->user)) {
+            return redirect()->back()->with('info', 'je kunt deze status niet liken omdat je nog geen vrienden bent met deze gebruiker');
+        }
 
-        // if (!Auth::user()->isFriendsWith($status->user)) {
-        //     return redirect()->route('home');
-        // }
+        if (Auth::user()->hasLikedStatus($status)) {
+            return redirect()->back();
+        }
 
-        // if (Auth::user()->hasLikedStatus($status)) {
-        //     return redirect()->back()->with('info', 'deze status is al geliked');
-        // }
+        $like = $status->likes()->create([]);
+        Auth::user()->likes()->save($like);
 
-        // $like = $status->likes()->create([]);
-
-        // dd($like);
-        // Auth::user()->likes()->save($like);
-
-        // return redirect()->back();
+        return redirect()->back();
     }
 }

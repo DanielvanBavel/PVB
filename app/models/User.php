@@ -78,17 +78,13 @@ class User extends Authenticatable
         return $this->hasMany('SocialApp\Models\Status', 'user_id');
     }
 
-    // public function likes()
-    // {
-    //     return $this->hasMany('SocialApp\Models\Like', 'user_id');
-    // }
+    public function likes() {
+        return $this->hasMany('SocialApp\Models\Like', 'user_id');
+    }
 
-    // public function hasLikedStatus(Status $status) {
-    //     return (bool) $status->likes
-    //                 ->where('user_like_id', $status->id)
-    //                 ->where('user_id', $this->id)
-    //                 ->count();
-    // }
+    public function hasLikedStatus(Status $status) {
+        return (bool) $status->likes->where('user_id', $this->id)->count();
+    }
 
     public function admin(User $user) {
         return $this->BelongsTo('SocialApp\Models\Admin', 'user_id');

@@ -12,7 +12,7 @@
                 @if ($profile->id !== Auth::user()->id)
                     <li><a href="{{ route('status.like', ['statusId' => $profile->id]) }}">Like</a></li>
                 @endif
-                <li></li>
+                <li>{{ $status->likes->count() }} {{ str_plural('like', $status->likes->count()) }}</li>
             </ul>
 
             @foreach ($status->replies as $reply)
@@ -28,7 +28,7 @@
                            @if ($reply->user->id !== Auth::user()->id)
                                 <li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Like</a></li>
                             @endif
-                            <li></li>                       
+                            <li>{{ $reply->likes->count() }} {{ str_plural('like', $reply->likes->count()) }}</li>                      
                         </ul>
                     </div>
                 </div>

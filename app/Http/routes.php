@@ -173,7 +173,7 @@ Route::post('/status/{statusId}/reageer', [
 ]);
 
 Route::get('/status/{statusId}/like', [
-    'uses' => 'StatusController@getLikes',
+    'uses' => 'StatusController@getLike',
     'as' => 'status.like',
     'middleware' => 'auth',
 ]);

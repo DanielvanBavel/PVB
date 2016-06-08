@@ -21,9 +21,7 @@
                     @endif
                 </div>
                 <div class="checkbox center">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember me
-                    </label>
+                    <label> <input type="checkbox" name="remember"> Onthoud mij </label>
                 </div>
                 <!-- <span><a class="mtop15 forgetPass" href=" {{-- {{ route('auth.forgetPass') }} --}}">Wachtwoord vergeten?</a></span> -->
 
