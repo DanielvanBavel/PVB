@@ -18,7 +18,6 @@ class StatusController extends Controller
         Auth::user()->statuses()->create([
             'body' => $request->input('status'),
         ]);
-                
 		return redirect()
 				->route('home')
 				->with('info', 'Status is geplaatst');
