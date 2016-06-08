@@ -15,6 +15,11 @@ Route::get('/', [
     'as' => 'home',
 ]);
 
+Route::get('/getMoreStatuses/{counter}', [
+    'uses' => 'HomeController@getMoreStatuses',
+    'as' => 'home.getMoreStatuses',
+]);
+
 /**
  * Authentication
  */

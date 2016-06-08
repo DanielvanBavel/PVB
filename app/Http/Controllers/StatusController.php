@@ -15,10 +15,11 @@ class StatusController extends Controller
 			'status' => 'required|max:1000',
 		]);
        
+      
         Auth::user()->statuses()->create([
             'body' => $request->input('status'),
         ]);
-                
+    
 		return redirect()
 				->route('home')
 				->with('info', 'Status is geplaatst');

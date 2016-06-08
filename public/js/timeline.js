@@ -1,23 +1,19 @@
-// $(document).ready(function(){
-// 	$('#submit').click(function(e){
-// 		e.preventDefault();
-// 		postStatus();
-// 	});
-// $('#submit').click(function(e){
-// 		e.preventDefault();
-// 		postReply();
-// 	});
-// });
+var counter = 0;
 
-// function postStatus(){
-// 	$.ajax({
-// 		url: '/status',
-// 		type: 'POST',
-// 		success: function(){
-
-// 		},
-// 		error: function(){
-// 			alert('Sorry for the inconvenience. If you see this error often please contact our support.');
-// 		}
-// 	})
-// }
+function loadMessages() {
+	counter = counter + 20
+$.ajax({
+	url: '/getMoreStatuses/' + counter,
+	type: 'GET',
+	success: function(data){
+		split = data.split('age">');
+		clean = split[1].split('<script');
+		$('#btnLoadMessages').remove();
+		$('#loadMessage').append(clean[0]);
+		console.log(counter);
+	},
+	error: function(){
+		alert('Sorry for the inconvenience. If you see this error often please contact our support.');
+	}
+})
+}

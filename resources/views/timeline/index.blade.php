@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6 center">
+        <div class="col-lg-6 center" id="loadMessage">
             @if (!$statuses->count())
                 <span>Er zijn nog geen geplaatste berichten</span>
             @else 
@@ -27,6 +27,9 @@
                     @include('templates/partials/TimelineStatuses')                    
                 @endforeach
             @endif
+     
+           <button onclick='loadMessages()' id="btnLoadMessages">Meer berichten ophalen? </button>
         </div>
     </div>
+
 @stop

@@ -25,7 +25,7 @@
                     
                     <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
                         <label for="birthdate" class="control-label">Geboortedatum</label>
-                        <input type="text" pattern="\d{1,2}-\d{1,2}-\d{4}" name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}" 
+                        <input type="text"  name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}" 
                                 oninvalid="this.setCustomValidity('De gevraagde input is: dd-mm-yyyy')">
                         @if ($errors->has('birthdate'))
                             <span class="help-block">{{ $errors->first('birthdate') }}</span>

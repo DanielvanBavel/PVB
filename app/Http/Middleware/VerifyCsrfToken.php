@@ -1,17 +1,18 @@
-<?php
+// <?php
 
-namespace SocialApp\Http\Middleware;
+// namespace SocialApp\Http\Middleware;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+// use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
-class VerifyCsrfToken extends BaseVerifier
-{
-    /**
-     * The URIs that should be excluded from CSRF verification.
-     *
-     * @var array
-     */
-    protected $except = [
-        'status'
-    ];
-}
+// class VerifyCsrfToken extends BaseVerifier
+// {
+//     /**
+//      * The URIs that should be excluded from CSRF verification.
+//      *
+//      * @var array
+//      */
+//     protected $except = [
+//         'getMoreStatuses'
+//         ''
+//     ];
+// }
