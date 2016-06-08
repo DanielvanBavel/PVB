@@ -34,18 +34,6 @@
                 @endif               
             </div>
 
-            <!-- <div class="pictures">
-                <h3>Foto's</h3>
-                <div class="fotoBlock">
-                    <div class="row">
-                        <img alt="" src="http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png" width="65" height="">
-                    </div>
-                </div>
-               {{-- @if($profile->id === Auth::id())
-                    <a class="btn btn-primary mtop15" href="{{ route('profile.edit')}}">Upload foto's</a>
-                @endif--}}
-            </div> -->
-
             <div class="friends mtop30 mbottom30 pbottom30">
                 @if($profile->id === Auth::id())
                     <h3>Mijn vrienden</h3>                    
@@ -56,14 +44,20 @@
                     <span>Helaas, u heeft nog geen vrienden</span>
                 @else                   
                     @foreach (array_slice($profile->friends()->toArray(), 0, 9) as $user)
-                        @include('templates/partials/friends')                     
+                        <div class="Friend FriendNoMargin">
+                            <a class="pull-left" href="{{ route('profile.index', $user['id']) }}">
+                                <img class="media-object profile-img mbotpad10" alt="" 
+                                src="@if(!$user['profile_img']) {{ URL::to('/') }}/images/users/profile-img.jpg  @else {{ $user['profile_img'] }} @endif" width="70">
+                            </a>
+                            <div><span>{{ $user['firstname'] . " " . $user['lastname'] }}</span></div>    
+                        </div>                   
                     @endforeach
                     <a class="SeeAll" <a href="{{route('profile.friends', $profile->id )}}">Klik hier voor volledige vriendenlijst</a>
                 @endif
             </div>
             
             @if($profile->id === Auth::id())
-            <div class="LetSomeoneHelpMe">
+            <div class="LetSomeoneHelpMe mbottom30 pbottom30">
                 <h3>Vraag hulp</h3>
                 <a href="{{ route('auth.askHelp')}}">Vraag hulp aan een bekende om mij te helpen met mijn account</a>
             </div>
@@ -73,7 +67,7 @@
                 @if(Auth::user()->isFriendsWith($profile))
                     <span>je bent al vrienden met deze gebruiker</span>                    
                 @else
-                    <div class="friends">
+                    <div class="friends mbottom30 pbottom30">
                         <h3>voeg vriend toe</h3>
                         <a class="btn btn-primary addFriendBtn" href="{{route('friends.add', $profile->id)}}">Vriend toevoegen
                         </a>

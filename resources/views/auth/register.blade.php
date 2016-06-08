@@ -8,8 +8,8 @@
             <form class="form-vertical" role="form" method="post" action="{{ route('auth.register') }}">
                 <div class="col-lg-5">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="control-label">Email Adres</label>
-                        <input type="email" name="email" placeholder='info@ domain.com' class="form-control" value="{{ Request::old('email') ?: '' }}">
+                        <label for="email" class="control-label">Email-adres</label>
+                        <input type="email" name="email" placeholder="info@domain.com" class="form-control" value="{{ Request::old('email') ?: '' }}">
                         @if ($errors->has('email'))
                             <span class="help-block">{{ $errors->first('email') }}</span>
                         @endif
@@ -25,7 +25,8 @@
                     
                     <div class="form-group{{ $errors->has('birthdate') ? ' has-error' : '' }}">
                         <label for="birthdate" class="control-label">Geboortedatum</label>
-                        <input type="text" pattern="\d{1,2}-\d{1,2}-\d{4}" name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}">
+                        <input type="text" pattern="\d{1,2}-\d{1,2}-\d{4}" name="birthdate" class="form-control" placeholder="DD-MM-YYYY" value="{{ Request::old('birthdate') ?: '' }}" 
+                                oninvalid="this.setCustomValidity('De gevraagde input is: dd-mm-yyyy')">
                         @if ($errors->has('birthdate'))
                             <span class="help-block">{{ $errors->first('birthdate') }}</span>
                         @endif
@@ -50,7 +51,7 @@
 
                 <div class="col-lg-5">
                     <div class="form-group{{ $errors->has('adres') ? ' has-error' : '' }}">
-                        <label for="adres" class="control-label">Adres</label>
+                        <label for="adres" class="control-label">Straat + huisnummer</label>
                         <input type="text" name="adres" placeholder="Straatnaam 12" class="form-control" value="{{ Request::old('adres') ?: '' }}">
                         @if ($errors->has('adres'))
                             <span class="help-block">{{ $errors->first('adres') }}</span>
@@ -59,7 +60,8 @@
 
                     <div class="form-group{{ $errors->has('Zipcode') ? ' has-error' : '' }}">
                         <label for="Zipcode" class="control-label">Postcode</label>
-                        <input type="text" name="Zipcode" placeholder="1234AB" class="form-control" value="{{ Request::old('Zipcode') ?: '' }}">
+                        <input type="text" name="Zipcode" placeholder="1234AB" class="form-control" pattern="[1-9][0-9]{3}\s?[a-zA-Z]{2}" value="{{ Request::old('Zipcode') ?: '' }}" 
+                            oninvalid="this.setCustomValidity('De gevraagde input is: 1234AB')">
                         @if ($errors->has('Zipcode'))
                             <span class="help-block">{{ $errors->first('Zipcode') }}</span>
                         @endif
@@ -96,7 +98,9 @@
 
                 <div class="form-group{{ $errors->has('phonenumber') ? ' has-error' : '' }}">
                         <label for="phonenumber" class="control-label">Telefoonnummer</label>
-                        <input type="text" name="phonenumber" placeholder="0612345678" class="form-control" value="{{ Request::old('phonenumber') ?: '' }}">
+                        <input type="text" name="phonenumber" placeholder="0612345678" 
+                            class="form-control" pattern="\d{10}"                        
+                            value="{{ Request::old('phonenumber') ?: '' }}">
                         @if ($errors->has('phonenumber'))
                             <span class="help-block">{{ $errors->first('phonenumber') }}</span>
                         @endif

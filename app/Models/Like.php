@@ -8,11 +8,8 @@ class Like extends Model
 {
     protected $table = 'likes';
 
-    public function likeable() {
-        return $this->morphTo();
-    }
-
-    public function user() {
-        return $this->belongsTo('SocialApp\Models\User', 'user_id');
-    }
+    protected $fillable = [
+        'user_id',
+        'status_id',
+    ];
 }

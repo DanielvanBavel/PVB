@@ -36,7 +36,7 @@ class AuthController extends Controller
 		]);
 
 		return redirect()
-			->route('home')
+			->route('auth.login')
 			->with('info', 'Uw account is aangemaakt, u kunt nu inloggen');
 	}
 

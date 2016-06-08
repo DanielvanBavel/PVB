@@ -16,7 +16,7 @@
 			@elseif(Auth::id() === $user->id)
 				{{-- Link naar eingen profiel ofso --}}
 			@else 
-				<a class="btn btn-primary addFriendBtn" href="{{route('friends.add', $user->id)}}">			Vriend toevoegen
+				<a class="btn btn-primary addFriendBtnSearch" href="{{route('friends.add', $user->id)}}">			Vriend toevoegen
 		        </a>
 			@endif	        
 	    </div>

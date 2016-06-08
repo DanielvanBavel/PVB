@@ -57,9 +57,29 @@ span.ifFriends {
 }
 
 .addFriendBtn {
+    float: left;
+    margin-left: 15px;
+}
+
+.addFriendBtnSearch {
     position: absolute;
+    top: 23px;
     right: 6%;
-    top: 30%;
+}
+
+.Friend {
+    float: left;
+    position: relative;
+    margin-right: 10px;
+}
+
+.Friend > div > span {
+    float: left;
+    margin-left: 12px;
+}
+
+.FriendNoMargin {
+    margin-right: 0px;
 }
 
 .friends > h3, .friends > span {

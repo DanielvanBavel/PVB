@@ -14,11 +14,11 @@ class StatusController extends Controller
 		$this->validate($request, [
 			'status' => 'required|max:1000',
 		]);
-
-		Auth::user()->statuses()->create([
+       
+        Auth::user()->statuses()->create([
             'body' => $request->input('status'),
         ]);
-        
+                
 		return redirect()
 				->route('home')
 				->with('info', 'Status is geplaatst');
@@ -38,10 +38,6 @@ class StatusController extends Controller
             return redirect()->route('home');
         }
 
-        // if (!Auth::user()->isFriendsWith($status->user) && Auth::user()->id !== $status->user->id) {
-        //     return redirect()->route('home');
-        // }
-
         $reply = Status::create([
             'body' => $request->input("reply-{$statusId}"),
         ])->user()->associate(Auth::user());
@@ -51,25 +47,25 @@ class StatusController extends Controller
         return redirect()->back();
     }
 
-	public function getLike($statusId)
-    {
-        $status = Status::find($statusId);
+	public function getLikes($statusId) {
 
-        if (!$status) {
-            return redirect()->route('home');
-        }
+        dd($statusId);
 
-        if (!Auth::user()->isFriendsWith($status->user)) {
-            return redirect()->route('home');
-        }
+       // $status = Status::find($statusId);
 
-        if (Auth::user()->hasLikedStatus($status)) {
-            return redirect()->back();
-        }
+        // if (!Auth::user()->isFriendsWith($status->user)) {
+        //     return redirect()->route('home');
+        // }
 
-        $like = $status->likes()->create([]);
-        Auth::user()->likes()->save($like);
+        // if (Auth::user()->hasLikedStatus($status)) {
+        //     return redirect()->back()->with('info', 'deze status is al geliked');
+        // }
 
-        return redirect()->back();
+        // $like = $status->likes()->create([]);
+
+        // dd($like);
+        // Auth::user()->likes()->save($like);
+
+        // return redirect()->back();
     }
 }

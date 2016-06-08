@@ -14,5 +14,6 @@
             @yield('content')
         </div>
         <script type="text/javascript" src="{{ url('js/jquery-1.12.3.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
     </body>
 </html>

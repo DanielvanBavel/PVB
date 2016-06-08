@@ -20,14 +20,17 @@
                         <span class="help-block">{{ $errors->first('password') }}</span>
                     @endif
                 </div>
-                <div class="checkbox">
+                <div class="checkbox center">
                     <label>
                         <input type="checkbox" name="remember"> Remember me
                     </label>
                 </div>
-                <span><a class="mtop15 forgetPass" href="{{ route('auth.forgetPass') }}">Wachtwoord vergeten?</a></span>
+                <!-- <span><a class="mtop15 forgetPass" href=" {{-- {{ route('auth.forgetPass') }} --}}">Wachtwoord vergeten?</a></span> -->
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Log nu in</button>
+
+                    <a href="{{ route('auth.register')}}" class="btn btn-default fl-r">Nog geen lid? meld je nu aan!</a>
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>

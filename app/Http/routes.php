@@ -67,11 +67,11 @@ Route::post('/register/admin/{activation_code}', [
 * Messages
 */
 
-Route::get('/berichten', [
-    'uses' => 'MessageController@getMessages',
-    'as' => 'messages.index',
-    'middleware' => 'auth',
-]);
+// Route::get('/berichten', [
+//     'uses' => 'MessageController@getMessages',
+//     'as' => 'messages.index',
+//     'middleware' => 'auth',
+// ]);
 
 
 /**
@@ -150,11 +150,11 @@ Route::get('/vrienden/add/{user}', [
 * Meldingen
 */
 
-Route::get('/meldingen', [
-    'uses' => 'NotificationController@index',
-    'as'    => 'notification.index',
-    'middleware' => 'auth',
-]);
+// Route::get('/meldingen', [
+//     'uses' => 'NotificationController@index',
+//     'as'    => 'notification.index',
+//     'middleware' => 'auth',
+// ]);
 
 /*
 * Statussen
@@ -173,11 +173,10 @@ Route::post('/status/{statusId}/reageer', [
 ]);
 
 Route::get('/status/{statusId}/like', [
-    'uses' => 'StatusController@getLike',
+    'uses' => 'StatusController@getLikes',
     'as' => 'status.like',
     'middleware' => 'auth',
 ]);
-
 
 /**
  * Zoeken
