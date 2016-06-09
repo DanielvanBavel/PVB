@@ -78,24 +78,26 @@
         @endif
     </div>
 
-    <div class="col-lg-9 posts">
+    <div class="col-lg-9 posts" id="loadMessage">
     <h3>Mijn geplaatste berichten</h3>  
         @if ($profile->id === Auth::id()){{-- Statusen van de ingelogde gebruiker --}}
             @if(!$statuses->count() )
-                <p>Je hebt nog geen berichten geplaatst.</p>
+                <p id="errorMsg">Je hebt nog geen berichten geplaatst.</p>
             @else 
                 @foreach ($statuses as $status)         
                     @include('templates/partials/profileStatuses')
                 @endforeach
+                <button onclick='loadProfileMessages("profiel/<?php echo $profile->id ?>")' id="btnLoadMessages" class='btn btn default'> Meer berichten ophalen? </button> 
             @endif
         @else
             @if($profile->statuses->count() === 0 )
-                <p>Deze gebruiker heeft nog geen bericht geplaatst.</p>
+                <p id="errorMsg">Deze gebruiker heeft nog geen bericht geplaatst.</p>
             @else 
                 @foreach ($profile->statuses->sortBy('created_at') as $status)         
                     @include('templates/partials/friendsStatuses')
                 @endforeach
+                <button onclick='loadProfileMessages("profiel/<?php echo $profile->id ?>")' id="btnLoadMessages" class='btn btn default'> Meer berichten ophalen? </button> 
             @endif
-        @endif                  
+        @endif             
     </div> 
 @stop

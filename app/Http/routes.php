@@ -79,6 +79,12 @@ Route::get('/profiel/{user}', [
     'middleware' => 'auth',
 ]);
 
+Route::get('/profiel/{user}/{count}', [
+    'uses' => 'ProfileController@getMoreStatuses',
+    'as' => 'profile.getMoreStatuses',
+    'middleware' => 'auth',
+]);
+
 Route::get('/mijnprofiel/edit', [
     'uses' => 'ProfileController@getEdit',
     'as' => 'profile.edit',

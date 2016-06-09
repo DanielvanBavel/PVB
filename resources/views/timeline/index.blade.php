@@ -21,14 +21,14 @@
     <div class="row">
         <div class="col-lg-6 center" id="loadMessage">
             @if (!$statuses->count())
-                <span>Er zijn nog geen geplaatste berichten</span>
+                <p id="errorMsg">Er zijn nog geen geplaatste berichten</p>
             @else 
                 @foreach ($statuses as $status)                                 
                     @include('templates/partials/TimelineStatuses')                    
                 @endforeach
             @endif
      
-           <button onclick='loadMessages()' id="btnLoadMessages">Meer berichten ophalen? </button>
+           <button onclick='loadMessages("getMoreStatuses")' id="btnLoadMessages" class='btn btn default'>Meer berichten ophalen? </button>
         </div>
     </div>
 

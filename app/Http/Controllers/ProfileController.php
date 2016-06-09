@@ -20,6 +20,15 @@ Class ProfileController extends Controller
         ]);
     }
 
+    public function getMoreStatuses(User $user, Status $statuses, $counter) {
+        $statuses = $this->getMinePosts($counter);
+
+        return view('profile.index')->with([
+            'profile' => $user, 
+            'statuses' => $statuses
+        ]);
+    }
+
     /*
     * Edit and Post functions for user profile
     * We use str_replace to get the space out of the zipcode.
@@ -49,8 +58,8 @@ Class ProfileController extends Controller
         return view('profile.friends')->with(['profile' => $user]);
     }
 
-    public function getMinePosts() {
+    public function getMinePosts($counter = 0) {
        return Status::where('user_id', Auth::user()->id)
-              ->whereNull('parent_id')->orderBy('created_at', 'desc')->get();
+              ->whereNull('parent_id')->orderBy('created_at', 'desc')->limit(20)->offset($counter)->get();
     }
 }
