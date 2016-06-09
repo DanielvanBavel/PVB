@@ -20,6 +20,9 @@ class AuthController extends Controller
 		return view('auth.register');
 	}
 
+	/*
+	* Get the register form and create a new user. We use str_replace to get the space out of the zipcode.
+	*/
 	public function postRegister(RegisterRequest $request)
 	{
 		User::create([
@@ -45,6 +48,10 @@ class AuthController extends Controller
 		return view('auth.login');
 	}
 
+	/*
+	* For the postLogin function we have to check for an user and admin login. 
+	* First we check for the normal user login and when that fails we check the admin login.
+	*/
 	public function postLogin(LoginRequest $request, Admin $admin)
 	{	
 		$credentials = $request->only(['email', 'password']);
@@ -69,14 +76,6 @@ class AuthController extends Controller
 		return redirect()->back()->with('info', 'Er kan niet ingelogd worden met het ingevulde email adres en wachtwoord, probeer het opnieuw');
 	}
 
-	public function getPasswordForgotten() {
-		return view('auth.recover');
-	}
-
-	public function postPasswordForgotten(RecoverRequest $request) {
-		echo "recover";
-	}
-
 	public function askHelp() {
 
 		return view('auth.askhelp');
@@ -87,18 +86,13 @@ class AuthController extends Controller
 		return redirect()->route('home');
 	}
 
-	public function sendAdminRequest(request $request) {
-		if ($request->input('email')) {
-			$activation_code = $this->generateRandomString();
-			$this->setActivationCode($activation_code);
-			mail($request->input('email'), 'Admin worden voor GEBRUIKER', "http://pvb.dev/register/admin/$activation_code");
-		}
-		return redirect()->route('auth.send');
-	}
-
 	public function send() {
 		return view('auth.send');
 	}
+
+	/*
+	* Admin registration
+	*/
 
 	public function setActivationCode($rndStr) {
 		 Admin::create([
@@ -106,6 +100,7 @@ class AuthController extends Controller
 			'activation_code' => $rndStr
 		]);
 	}
+
 	public function generateRandomString($length = 25) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$charactersLength = strlen($characters);
@@ -131,5 +126,14 @@ class AuthController extends Controller
 			'activation_code' => ''
 		]);
 		return redirect()->route('home');
+	}
+
+	public function sendAdminRequest(request $request) {
+		if ($request->input('email')) {
+			$activation_code = $this->generateRandomString();
+			$this->setActivationCode($activation_code);
+			mail($request->input('email'), 'Admin verzoek', "Klik op de volgende link om op de registratie pagina te komen. http://pvb.dev/register/admin/$activation_code");
+		}
+		return redirect()->route('auth.send');
 	}
 }

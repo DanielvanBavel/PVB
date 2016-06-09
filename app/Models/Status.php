@@ -18,6 +18,10 @@ class Status extends Model
         return $this->BelongsTo('SocialApp\Models\User', 'user_id');
     }
 
+    /*
+    * With this functions no new status will be posted on a reply.
+    */
+
     public function scopeNotReply($query) {
         return $query->whereNull('parent_id');
     }

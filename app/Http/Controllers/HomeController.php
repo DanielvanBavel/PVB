@@ -8,6 +8,11 @@ use SocialApp\Models\Status;
 
 class HomeController extends Controller
 {
+
+	/*
+	* Get the initial load of statuses.
+	*/
+
 	public function index()
 	{
 		if (Auth::check()) {
@@ -20,6 +25,10 @@ class HomeController extends Controller
 		}
 		return view('home');
 	}
+
+	/*
+	* Ajax request wil be send to this function to load in more statuses.
+	*/
 
 	public function getMoreStatuses($counter)
 	{

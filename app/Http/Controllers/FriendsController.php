@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class FriendsController extends Controller
 {
+
 	public function getFriends() {
 		$friends = Auth::user()->friends();
 

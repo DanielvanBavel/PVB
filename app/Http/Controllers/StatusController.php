@@ -18,6 +18,7 @@ class StatusController extends Controller
         Auth::user()->statuses()->create([
             'body' => $request->input('status'),
         ]);
+
 		return redirect()
 				->route('home')
 				->with('info', 'Status is geplaatst');
@@ -25,11 +26,10 @@ class StatusController extends Controller
 
 	public function postReply(Request $request, $statusId)
     {
-        $this->validate($request, [
-            "reply-{$statusId}" => 'required|max:1000',
-        ], [
-            'required' => 'The reply body is required.'
-        ]);
+        $this->validate($request, 
+            ["reply-{$statusId}" => 'required|max:1000'], 
+            ['required' => 'The reply body is required.']
+        );
 
         $status = Status::notReply()->find($statusId);
 

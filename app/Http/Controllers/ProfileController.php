@@ -20,6 +20,11 @@ Class ProfileController extends Controller
         ]);
     }
 
+    /*
+    * Edit and Post functions for user profile
+    * We use str_replace to get the space out of the zipcode.
+    */
+
     public function getEdit(User $user) {
         return view('profile.edit')->with(['profile' => $user]);
     }

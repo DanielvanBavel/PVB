@@ -68,16 +68,6 @@ Route::post('/register/admin/{activation_code}', [
 ]);
 
 
-/*
-* Messages
-*/
-
-// Route::get('/berichten', [
-//     'uses' => 'MessageController@getMessages',
-//     'as' => 'messages.index',
-//     'middleware' => 'auth',
-// ]);
-
 
 /**
  * GebruikersProfiel
@@ -150,16 +140,6 @@ Route::get('/vrienden/add/{user}', [
     'as'         => 'friends.add',
     'middleware' => 'auth',
 ]);
-
-/*
-* Meldingen
-*/
-
-// Route::get('/meldingen', [
-//     'uses' => 'NotificationController@index',
-//     'as'    => 'notification.index',
-//     'middleware' => 'auth',
-// ]);
 
 /*
 * Statussen
